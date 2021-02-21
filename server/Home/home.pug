@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href='/css/style.css'>
-  <title>GreenDream</title>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <h1 class="brand-name">GreenDream</h1>
-      <nav>
-        <ul class="nav-list">
-          <li><a href="#">Home </a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Rooms</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-</body>
-</html>
+//- HomePage
+extends ../Components/layout
+
+block content
+  include ./includes/home-header
+  include ./includes/home-the-best
+  include ./includes/home-ours-rooms
+  include ./includes/home-enjoy-vacation
+  include ./includes/home-newsletter
+  include ./includes/home-discount

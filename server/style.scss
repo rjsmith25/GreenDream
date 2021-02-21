@@ -1,2 +1,16 @@
-@use "./Components/_base.scss";
-@use "./Components/_header.scss";
+// General Styles
+@use "./Components/_base";
+@use "./Components/_general-header";
+@use "./Components/_footer";
+
+// Home page Styles
+@use "./Home/scss/_home-header";
+@use "./Home/scss/_home-the-best";
+@use "./Home/scss/_home-our-rooms";
+@use "./Home/scss/_home-enjoy-vacation";
+@use "./Home/scss/_home-newsletter";
+@use "./Home/scss/_home-discount";
+
+// About page Styles
+@use "./About/scss/_about-us";
+@use "./About/scss/_about-team";

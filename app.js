@@ -20,6 +20,36 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var expr
 
 /***/ }),
 
+/***/ "./server/About/about.controller.js":
+/*!******************************************!*\
+  !*** ./server/About/about.controller.js ***!
+  \******************************************/
+/***/ ((module) => {
+
+eval("function About(req, res) {\n  res.render(\"About/about.pug\");\n}\n\nmodule.exports = About;\n\n//# sourceURL=webpack://hotelx/./server/About/about.controller.js?");
+
+/***/ }),
+
+/***/ "./server/About/about.route.js":
+/*!*************************************!*\
+  !*** ./server/About/about.route.js ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const express = __webpack_require__(/*! express */ \"express\");\n\nconst aboutController = __webpack_require__(/*! ./about.controller */ \"./server/About/about.controller.js\");\n\nconst aboutRouter = express.Router();\naboutRouter.get(\"/\", aboutController);\nmodule.exports = aboutRouter;\n\n//# sourceURL=webpack://hotelx/./server/About/about.route.js?");
+
+/***/ }),
+
+/***/ "./server/About/index.js":
+/*!*******************************!*\
+  !*** ./server/About/index.js ***!
+  \*******************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__(/*! ./about.route */ \"./server/About/about.route.js\");\n\n//# sourceURL=webpack://hotelx/./server/About/index.js?");
+
+/***/ }),
+
 /***/ "./server/Home/home.controller.js":
 /*!****************************************!*\
   !*** ./server/Home/home.controller.js ***!
@@ -66,7 +96,7 @@ eval("module.exports = __webpack_require__(/*! ./server.routes */ \"./server/ser
   \*********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("// setup all server routes\nconst express = __webpack_require__(/*! express */ \"express\");\n\nconst serverRouter = express.Router();\n\nconst homeRoute = __webpack_require__(/*! ./Home */ \"./server/Home/index.js\");\n\nserverRouter.use(\"/\", homeRoute);\nmodule.exports = serverRouter;\n\n//# sourceURL=webpack://hotelx/./server/server.routes.js?");
+eval("// setup all server routes\nconst express = __webpack_require__(/*! express */ \"express\");\n\nconst serverRouter = express.Router();\n\nconst homeRoute = __webpack_require__(/*! ./Home */ \"./server/Home/index.js\");\n\nconst aboutRoute = __webpack_require__(/*! ./About */ \"./server/About/index.js\");\n\nserverRouter.use(\"/\", homeRoute);\nserverRouter.use(\"/about\", aboutRoute);\nmodule.exports = serverRouter;\n\n//# sourceURL=webpack://hotelx/./server/server.routes.js?");
 
 /***/ }),
 

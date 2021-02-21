@@ -57,8 +57,18 @@ textarea {
   margin: 0 auto;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+}
+
 .flex {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .grid {

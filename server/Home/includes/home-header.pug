@@ -1,0 +1,30 @@
+//- Homepage header 
+header.home-header
+    .container
+        .header-top.flex
+          .brand-name
+            a(href='/')
+              h1 GreenDream       
+          nav
+            ul.nav-list.flex
+              li
+                a(href='/') Home            
+              li
+                a(href='/about') About Us            
+              li
+                a(href='#') Rooms           
+              li
+                a(href='#') Contact     
+        .header-lower.flex
+          h1.header-headline Book your best room      
+          form.hotel-search.flex
+            .input-group
+              label(for='') Check in         
+              input(type='text', placeholder='Choose date')         
+            .input-group
+              label(for='') Check out           
+              input(type='text', placeholder='Choose date')        
+            .input-group
+              label(for='') Guests           
+              input(type='text', placeholder='Choose date')        
+            button(type='submit') check availability

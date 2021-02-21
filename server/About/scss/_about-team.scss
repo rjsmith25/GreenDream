@@ -1,0 +1,49 @@
+.about-team {
+  padding-bottom: 20px;
+}
+
+.about-team .team-mate {
+  display: flex;
+  flex-basis: 23.5%;
+  height: 323px;
+  margin-right: 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.about-team .team-mate .name {
+  color: #fff;
+}
+
+.about-team .team-mate .title {
+  color: #1caf4d;
+}
+
+.about-team .team-mate:last-child {
+  margin-right: 0;
+}
+
+.about-team .team-mate .content {
+  margin-top: auto;
+}
+
+.about-team .container > *:first-child {
+  background: url("../img/woman-1.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.about-team .container > *:nth-child(2) {
+  background: url("../img/woman-2.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.about-team .container > *:nth-child(3) {
+  background: url("../img/man-1.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.about-team .container > *:nth-child(4) {
+  background: url("../img/man-2.jpg") no-repeat center center;
+  background-size: cover;
+}

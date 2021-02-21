@@ -1,0 +1,80 @@
+footer {
+  color: #fff;
+  background-color: #1d1e21;
+  padding: 20px 0;
+}
+
+footer .grid {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.footer-address h2 {
+  color: #2ec84f;
+  margin: 5px 0;
+}
+
+.footer-address p {
+  margin-bottom: 5px;
+}
+
+.footer-address .address,
+.footer-address .phone-email {
+  color: #8f939d;
+}
+
+.footer-explore,
+.footer-newsletter {
+  margin-top: 20px;
+}
+
+.footer-explore p {
+  margin: 5px 0;
+}
+
+.footer-explore ul {
+  margin-top: 20px;
+  list-style-type: none;
+}
+
+.footer-explore ul a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer-explore ul li {
+  margin-bottom: 10px;
+}
+
+.footer-newsletter p,
+.footer-explore p {
+  font-size: 18px;
+}
+
+.footer-newsletter input {
+  color: #fff;
+  background-color: #33353b;
+  border: 0;
+  margin: 20px 0;
+  width: 336px;
+  font-size: 16px;
+  padding: 15px 10px;
+}
+
+.footer-newsletter input::placeholder {
+  color: #fff;
+  opacity: 1;
+}
+
+.footer-newsletter ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.footer-newsletter ul li {
+  margin-right: 30px;
+}
+
+.footer-newsletter ul li:last-child {
+  margin-right: 0;
+}
