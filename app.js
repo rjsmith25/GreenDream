@@ -50,6 +50,36 @@ eval("module.exports = __webpack_require__(/*! ./about.route */ \"./server/About
 
 /***/ }),
 
+/***/ "./server/Contact/contact.controller.js":
+/*!**********************************************!*\
+  !*** ./server/Contact/contact.controller.js ***!
+  \**********************************************/
+/***/ ((module) => {
+
+eval("function Contact(req, res) {\n  res.render(\"Contact/contact.pug\");\n}\n\nmodule.exports = Contact;\n\n//# sourceURL=webpack://hotelx/./server/Contact/contact.controller.js?");
+
+/***/ }),
+
+/***/ "./server/Contact/contact.route.js":
+/*!*****************************************!*\
+  !*** ./server/Contact/contact.route.js ***!
+  \*****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const express = __webpack_require__(/*! express */ \"express\");\n\nconst contactController = __webpack_require__(/*! ./contact.controller */ \"./server/Contact/contact.controller.js\");\n\nconst contactRouter = express.Router();\ncontactRouter.get(\"/\", contactController);\nmodule.exports = contactRouter;\n\n//# sourceURL=webpack://hotelx/./server/Contact/contact.route.js?");
+
+/***/ }),
+
+/***/ "./server/Contact/index.js":
+/*!*********************************!*\
+  !*** ./server/Contact/index.js ***!
+  \*********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__(/*! ./contact.route */ \"./server/Contact/contact.route.js\");\n\n//# sourceURL=webpack://hotelx/./server/Contact/index.js?");
+
+/***/ }),
+
 /***/ "./server/Home/home.controller.js":
 /*!****************************************!*\
   !*** ./server/Home/home.controller.js ***!
@@ -80,6 +110,36 @@ eval("module.exports = __webpack_require__(/*! ./home.route */ \"./server/Home/h
 
 /***/ }),
 
+/***/ "./server/Rooms/index.js":
+/*!*******************************!*\
+  !*** ./server/Rooms/index.js ***!
+  \*******************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__(/*! ./rooms.route */ \"./server/Rooms/rooms.route.js\");\n\n//# sourceURL=webpack://hotelx/./server/Rooms/index.js?");
+
+/***/ }),
+
+/***/ "./server/Rooms/rooms.controller.js":
+/*!******************************************!*\
+  !*** ./server/Rooms/rooms.controller.js ***!
+  \******************************************/
+/***/ ((module) => {
+
+eval("function Rooms(req, res) {\n  res.render(\"Rooms/rooms.pug\");\n}\n\nmodule.exports = Rooms;\n\n//# sourceURL=webpack://hotelx/./server/Rooms/rooms.controller.js?");
+
+/***/ }),
+
+/***/ "./server/Rooms/rooms.route.js":
+/*!*************************************!*\
+  !*** ./server/Rooms/rooms.route.js ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const express = __webpack_require__(/*! express */ \"express\");\n\nconst roomsController = __webpack_require__(/*! ./rooms.controller */ \"./server/Rooms/rooms.controller.js\");\n\nconst roomsRouter = express.Router();\nroomsRouter.get(\"/\", roomsController);\nmodule.exports = roomsRouter;\n\n//# sourceURL=webpack://hotelx/./server/Rooms/rooms.route.js?");
+
+/***/ }),
+
 /***/ "./server/index.js":
 /*!*************************!*\
   !*** ./server/index.js ***!
@@ -96,7 +156,7 @@ eval("module.exports = __webpack_require__(/*! ./server.routes */ \"./server/ser
   \*********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("// setup all server routes\nconst express = __webpack_require__(/*! express */ \"express\");\n\nconst serverRouter = express.Router();\n\nconst homeRoute = __webpack_require__(/*! ./Home */ \"./server/Home/index.js\");\n\nconst aboutRoute = __webpack_require__(/*! ./About */ \"./server/About/index.js\");\n\nserverRouter.use(\"/\", homeRoute);\nserverRouter.use(\"/about\", aboutRoute);\nmodule.exports = serverRouter;\n\n//# sourceURL=webpack://hotelx/./server/server.routes.js?");
+eval("// setup all server routes\nconst express = __webpack_require__(/*! express */ \"express\");\n\nconst serverRouter = express.Router();\n\nconst homeRoute = __webpack_require__(/*! ./Home */ \"./server/Home/index.js\");\n\nconst aboutRoute = __webpack_require__(/*! ./About */ \"./server/About/index.js\");\n\nconst contactRoute = __webpack_require__(/*! ./Contact */ \"./server/Contact/index.js\");\n\nconst roomsRoute = __webpack_require__(/*! ./Rooms */ \"./server/Rooms/index.js\");\n\nserverRouter.use(\"/\", homeRoute);\nserverRouter.use(\"/about\", aboutRoute);\nserverRouter.use(\"/contact\", contactRoute);\nserverRouter.use(\"/rooms\", roomsRoute);\nmodule.exports = serverRouter;\n\n//# sourceURL=webpack://hotelx/./server/server.routes.js?");
 
 /***/ }),
 
