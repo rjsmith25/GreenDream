@@ -4,4 +4,6 @@ include ../Components/mixin/general-header
 
 block content
   +generalHeader("Rooms")
-  p Rooms 
+  <section class="rooms">!{content}</section>
+block scripts
+  script(src='/js/rooms.bundle.js')

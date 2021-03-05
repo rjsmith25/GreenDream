@@ -1,5 +1,10 @@
+import React from "react";
+import { renderToString } from "react-dom/server";
+import RoomsComponent from "../../client/rooms/rooms";
+
 function Rooms(req, res) {
-  res.render("Rooms/rooms.pug");
+  const content = renderToString(<RoomsComponent />);
+  res.render("Rooms/rooms.pug", { content });
 }
 
-module.exports = Rooms;
+export default Rooms;
