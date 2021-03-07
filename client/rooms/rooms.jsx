@@ -3,9 +3,12 @@ import RoomsPaginate from "./rooms-paginate";
 import RoomsSortby from "./rooms-sortby";
 import RoomsStackView from "./rooms-stack-view";
 import RoomsGridView from "./rooms-grid-view";
+import RoomsSideBar from "./rooms-sidebar";
+import RoomsSearch from "./rooms-search";
+import axios from "axios";
 
 function Rooms() {
-  const [perPage, setPerPage] = useState(6);
+  const [perPage, setPerPage] = useState(10);
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
@@ -21,123 +24,34 @@ function Rooms() {
     setDisplay(e.target.dataset.display);
   }
 
-  // for intial render
+  // for intial render get data from database
   useEffect(() => {
-    let rooms = [];
-    let roomData = {
-      title: "Family Room",
-      reviews: 156,
-      beds: 2,
-      price: 102,
-    };
-    for (let i = 0; i < 100; i++) {
-      rooms.push(roomData);
-    }
-
-    setSearchCount(rooms.length);
-    setPageCount(Math.ceil(rooms.length / perPage));
-    setData(rooms);
+    axios
+      .get("/api/rooms")
+      .then((res) => {
+        setSearchCount(res.data.length);
+        setPageCount(Math.ceil(res.data.length / perPage));
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
-
-  // change numbers of items per Page to show based on display (grid view or stack view)
-  useEffect(() => {
-    if (data === 0) {
-      return;
-    }
-    if (display === "grid") {
-      setPerPage(9);
-      setPageCount(Math.ceil(data.length / 9));
-    } else {
-      setPerPage(6);
-      setPageCount(Math.ceil(data.length / 6));
-    }
-  }, [display, data]);
 
   function handlePageClick(data) {
     let selected = data.selected;
     setCurrentPage(selected + 1);
   }
 
-  if (currentPage > pageCount && display === "grid") {
-    var endIndex = pageCount * perPage;
-    var startIndex = endIndex - perPage;
-    var currentRooms = data.slice(startIndex, endIndex);
-  } else {
-    var endIndex = currentPage * perPage;
-    var startIndex = endIndex - perPage;
-    var currentRooms = data.slice(startIndex, endIndex);
-  }
+  var endIndex = currentPage * perPage;
+  var startIndex = endIndex - perPage;
+  var currentRooms = data.slice(startIndex, endIndex);
 
   return (
     <div className="container">
-      <div className="rooms-search">
-        <form className="hotel-search rooms-h flex">
-          <div className="input-group">
-            <label htmlFor="">Check in </label>
-            <input type="text" placeholder="Choose date" />
-          </div>
-          <div className="input-group">
-            <label htmlFor="">Check out</label>
-            <input type="text" placeholder="Choose date" />
-          </div>
-          <div className="input-group">
-            <label htmlFor="">Guests</label>
-            <input type="text" placeholder="Choose date" />
-          </div>
-          <button type="submit">Update</button>
-        </form>
-      </div>
+      <RoomsSearch />
       <div className="rooms-main-content grid">
-        <div className="sidebar">
-          <div className="room-type">
-            <p>Room Type</p>
-            <label htmlFor="deluxe-room">
-              <input
-                type="checkbox"
-                id="deluxe-room"
-                name="deluxe-room"
-                value="Deluxe Room"
-              />
-              Deluxe Room
-            </label>
-            <label htmlFor="luxury-room">
-              <input
-                type="checkbox"
-                id="luxury-room"
-                name="luxury-room"
-                value="Luxury Room"
-              />
-              Luxury Room
-            </label>
-            <label htmlFor="family-room">
-              <input
-                type="checkbox"
-                id="family-room"
-                name="family-room"
-                value="Family Room"
-              />
-              Family Room
-            </label>
-            <label htmlFor="couple-room">
-              <input
-                type="checkbox"
-                id="couple-room"
-                name="couple-room"
-                value="Couple Room"
-              />
-              Couple Room
-            </label>
-            <label htmlFor="standard-room">
-              <input
-                type="checkbox"
-                id="standard-room"
-                name="standard-room"
-                value="Standard Room"
-              />
-              Standard Room
-            </label>
-          </div>
-        </div>
+        <RoomsSideBar />
         <div className="content">
           <RoomsSortby
             perPage={perPage}

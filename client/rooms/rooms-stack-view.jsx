@@ -10,23 +10,23 @@ function RoomsStackView({ currentRooms }) {
             <div className="room-pic">
               <img
                 className="responsive-img"
-                src="https://placeimg.com/640/480/arch"
+                src={room.photos[0]}
                 alt="a hotel room"
               />
             </div>
             <div className="room-info">
-              <h2>{room.title}</h2>
+              <h2>{room.roomtype}</h2>
               <div className="ratings">
                 <i className="fas fa-star fa-star-green"></i>
                 <i className="fas fa-star fa-star-green"></i>
                 <i className="fas fa-star fa-star-green"></i>
                 <i className="fas fa-star fa-star-green"></i>
                 <i className="fas fa-star-half-alt fa-star-green"></i>
-                <span className="review-count">{room.reviews} Reviews</span>
+                <span className="review-count">{room.reviewCount} Reviews</span>
               </div>
               <div className="bed">
                 <p>
-                  <span>Bed</span>: {room.beds} king and 1 sofabed
+                  <span>Bed</span>: {room.beds}
                 </p>
                 <p>
                   <span>Max</span>: 4 People

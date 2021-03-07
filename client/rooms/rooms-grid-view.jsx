@@ -9,21 +9,23 @@ function RoomsGridView({ currentRooms }) {
             <i className="far fa-heart"></i>
             <div className="room-card-pic">
               <img
-                className="img-responsive"
-                src="https://placeimg.com/640/480/arch"
+                className="responsive-img"
+                src={room.photos[0]}
                 alt="hotel"
               />
             </div>
             <div className="room-card-info">
               <div className="info">
-                <h2>{room.title}</h2>
+                <h2>{room.roomtype}</h2>
                 <div className="ratings-reviews">
                   <i className="fas fa-star"></i>
                   <i className="fas fa-star"></i>
                   <i className="fas fa-star"></i>
                   <i className="fas fa-star"></i>
                   <i className="fas fa-star-half-alt"></i>
-                  <span className="review-count">{room.reviews} Reviews</span>
+                  <span className="review-count">
+                    {room.reviewCount} Reviews
+                  </span>
                 </div>
               </div>
               <div className="pricing">
