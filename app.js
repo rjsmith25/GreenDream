@@ -9,6 +9,66 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./api/api.routes.js":
+/*!***************************!*\
+  !*** ./api/api.routes.js ***!
+  \***************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const express = __webpack_require__(/*! express */ \"express\");\n\nconst roomRouter = __webpack_require__(/*! ./room */ \"./api/room/index.js\");\n\nconst apiRouter = express.Router();\napiRouter.use(\"/rooms\", roomRouter);\nmodule.exports = apiRouter;\n\n//# sourceURL=webpack://hotelx/./api/api.routes.js?");
+
+/***/ }),
+
+/***/ "./api/index.js":
+/*!**********************!*\
+  !*** ./api/index.js ***!
+  \**********************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__(/*! ./api.routes */ \"./api/api.routes.js\");\n\n//# sourceURL=webpack://hotelx/./api/index.js?");
+
+/***/ }),
+
+/***/ "./api/room/index.js":
+/*!***************************!*\
+  !*** ./api/room/index.js ***!
+  \***************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__(/*! ./room.route */ \"./api/room/room.route.js\");\n\n//# sourceURL=webpack://hotelx/./api/room/index.js?");
+
+/***/ }),
+
+/***/ "./api/room/room.controller.js":
+/*!*************************************!*\
+  !*** ./api/room/room.controller.js ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const Room = __webpack_require__(/*! ./room.model */ \"./api/room/room.model.js\");\n\nasync function getAllRooms(req, res) {\n  try {\n    let rooms = await Room.find();\n    res.status(200).json(rooms);\n  } catch (e) {\n    res.status(500).json({\n      message: \"Unable to get rooms\"\n    });\n  }\n}\n\nasync function getRoomByID(req, res) {\n  const {\n    room_id\n  } = req.params;\n\n  try {\n    if (!room_id) {\n      res.status(400).json({\n        message: \"Missing room id\"\n      });\n    }\n\n    let room = await Room.findById(room_id);\n\n    if (!room) {\n      res.status(404).json({\n        message: \"Unable to find room\"\n      });\n    }\n\n    res.status(200).json(room);\n  } catch (e) {\n    res.status(500).json({\n      message: \"Unable to get room\"\n    });\n  }\n}\n\nmodule.exports = {\n  getAllRooms,\n  getRoomByID\n};\n\n//# sourceURL=webpack://hotelx/./api/room/room.controller.js?");
+
+/***/ }),
+
+/***/ "./api/room/room.model.js":
+/*!********************************!*\
+  !*** ./api/room/room.model.js ***!
+  \********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const db = __webpack_require__(/*! ../../data/dbConfig */ \"./data/dbConfig.js\");\n\nasync function find() {\n  try {\n    let [rooms, roomsAmenities, roomsPhotos, roomsFacilities] = await Promise.all([db(\"rooms\"), db(\"rooms\").select(\"room_id\", \"amenity\").join(\"amenities\", \"rooms.id\", \"=\", \"amenities.room_id\"), db(\"rooms\").select(\"room_id\", \"image_url\").join(\"photos\", \"rooms.id\", \"=\", \"photos.room_id\"), db(\"rooms\").select(\"room_id\", \"facility\").join(\"facilities\", \"rooms.id\", \"=\", \"facilities.room_id\")]);\n\n    for (let i = 0; i < rooms.length; i++) {\n      let amenities = [];\n      let photos = [];\n      let facilities = []; // link amenities to room\n\n      for (let j = 0; j < roomsAmenities.length; j++) {\n        if (rooms[i].id === roomsAmenities[j].room_id) {\n          amenities.push(roomsAmenities[j].amenity);\n        }\n      } // link photos to room\n\n\n      for (let k = 0; k < roomsPhotos.length; k++) {\n        if (rooms[i].id === roomsPhotos[k].room_id) {\n          photos.push(roomsPhotos[k].image_url);\n        }\n      } // link facilities to room\n\n\n      for (let l = 0; l < roomsFacilities.length; l++) {\n        if (rooms[i].id === roomsFacilities[l].room_id) {\n          facilities.push(roomsFacilities[l].facility);\n        }\n      }\n\n      rooms[i].photos = photos;\n      rooms[i].amenities = amenities;\n      rooms[i].facilities = facilities;\n    }\n\n    return rooms;\n  } catch (e) {\n    return e;\n  }\n}\n\nasync function findById(id) {\n  try {\n    let [room, amenities, photos, facilities] = await Promise.all([db(\"rooms\").where({\n      id: id\n    }).first(), db(\"rooms\").select(\"amenity\").join(\"amenities\", \"rooms.id\", \"=\", \"amenities.room_id\").where(\"room_id\", id), db(\"rooms\").select(\"image_url\").join(\"photos\", \"rooms.id\", \"=\", \"photos.room_id\").where(\"room_id\", id), db(\"rooms\").select(\"facility\").join(\"facilities\", \"rooms.id\", \"=\", \"facilities.room_id\").where(\"room_id\", id)]);\n    amenities = amenities.map(data => {\n      return data.amenity;\n    });\n    photos = photos.map(data => {\n      return data.image_url;\n    });\n    facilities = facilities.map(data => {\n      return data.facility;\n    });\n    room.photos = photos;\n    room.amenities = amenities;\n    room.facilities = facilities;\n    return room;\n  } catch (e) {\n    return e;\n  }\n}\n\nmodule.exports = {\n  find,\n  findById\n};\n\n//# sourceURL=webpack://hotelx/./api/room/room.model.js?");
+
+/***/ }),
+
+/***/ "./api/room/room.route.js":
+/*!********************************!*\
+  !*** ./api/room/room.route.js ***!
+  \********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const express = __webpack_require__(/*! express */ \"express\");\n\nconst {\n  getAllRooms,\n  getRoomByID\n} = __webpack_require__(/*! ./room.controller */ \"./api/room/room.controller.js\");\n\nconst roomRouter = express.Router();\nroomRouter.get(\"/\", getAllRooms);\nroomRouter.get(\"/:room_id\", getRoomByID);\nmodule.exports = roomRouter;\n\n//# sourceURL=webpack://hotelx/./api/room/room.route.js?");
+
+/***/ }),
+
 /***/ "./app.src.js":
 /*!********************!*\
   !*** ./app.src.js ***!
@@ -16,7 +76,7 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./server */ \"./server/index.js\");\n/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_server__WEBPACK_IMPORTED_MODULE_2__);\n\n\n // express app\n\nconst app = express__WEBPACK_IMPORTED_MODULE_0___default()(); // disable x-powered by\n\napp.disable(\"x-powered-by\"); // set up port to listen on\n\napp.set(\"port\", process.env.PORT || 3000); // view engine setup\n\napp.set(\"views\", path__WEBPACK_IMPORTED_MODULE_1___default().join(__dirname, \"server\"));\napp.set(\"view engine\", \"pug\"); // serve static files\n\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default().static(\"./public\")); // Parse incoming post request\n\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default().urlencoded({\n  extended: true\n}));\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default().json()); // setup server routing\n\napp.use(\"/\", (_server__WEBPACK_IMPORTED_MODULE_2___default())); // catch 404 and forward to error handler\n\napp.use((req, res, next) => {\n  var err = new Error(\"Not Found\");\n  err.status = 404;\n  next(err);\n}); // log general uncaught promise errors\n\nprocess.on(\"unhandledRejection\", reason => {\n  console.log(\"Unhandled Rejection at:\", reason.stack || reason);\n}); // start server\n\nconst startServer = app.listen(app.get(\"port\"), () => {\n  console.log(`listening on port: ${startServer.address().port}`);\n});\n\n//# sourceURL=webpack://hotelx/./app.src.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./server */ \"./server/index.js\");\n/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_server__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./api */ \"./api/index.js\");\n/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_api__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n // express app\n\nconst app = express__WEBPACK_IMPORTED_MODULE_0___default()(); // disable x-powered by\n\napp.disable(\"x-powered-by\"); // set up port to listen on\n\napp.set(\"port\", process.env.PORT || 3000); // view engine setup\n\napp.set(\"views\", path__WEBPACK_IMPORTED_MODULE_1___default().join(__dirname, \"server\"));\napp.set(\"view engine\", \"pug\"); // serve static files\n\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default().static(\"./public\")); // Parse incoming post request\n\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default().urlencoded({\n  extended: true\n}));\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default().json()); // setup server routing\n\napp.use(\"/\", (_server__WEBPACK_IMPORTED_MODULE_2___default()));\napp.use(\"/api\", (_api__WEBPACK_IMPORTED_MODULE_3___default())); // catch 404 and forward to error handler\n\napp.use((req, res, next) => {\n  var err = new Error(\"Not Found\");\n  err.status = 404;\n  next(err);\n}); // log general uncaught promise errors\n\nprocess.on(\"unhandledRejection\", reason => {\n  console.log(\"Unhandled Rejection at:\", reason.stack || reason);\n}); // start server\n\nconst startServer = app.listen(app.get(\"port\"), () => {\n  console.log(`listening on port: ${startServer.address().port}`);\n});\n\n//# sourceURL=webpack://hotelx/./app.src.js?");
 
 /***/ }),
 
@@ -83,6 +143,26 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _rooms_paginate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rooms-paginate */ \"./client/rooms/rooms-paginate.jsx\");\n/* harmony import */ var _rooms_sortby__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./rooms-sortby */ \"./client/rooms/rooms-sortby.jsx\");\n/* harmony import */ var _rooms_stack_view__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./rooms-stack-view */ \"./client/rooms/rooms-stack-view.jsx\");\n/* harmony import */ var _rooms_grid_view__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./rooms-grid-view */ \"./client/rooms/rooms-grid-view.jsx\");\n\n\n\n\n\n\nfunction Rooms() {\n  const [perPage, setPerPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(6);\n  const [data, setData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);\n  const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);\n  const [pageCount, setPageCount] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);\n  const [searchCount, setSearchCount] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);\n  const [showDropdown, setShowDropdown] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n  const [display, setDisplay] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(\"stack\");\n\n  function clickDropdown() {\n    setShowDropdown(!showDropdown);\n  }\n\n  function clickDisplay(e) {\n    setDisplay(e.target.dataset.display);\n  } // for intial render\n\n\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    let rooms = [];\n    let roomData = {\n      title: \"Family Room\",\n      reviews: 156,\n      beds: 2,\n      price: 102\n    };\n\n    for (let i = 0; i < 100; i++) {\n      rooms.push(roomData);\n    }\n\n    setSearchCount(rooms.length);\n    setPageCount(Math.ceil(rooms.length / perPage));\n    setData(rooms);\n  }, []); // change numbers of items per Page to show based on display (grid view or stack view)\n\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    if (data === 0) {\n      return;\n    }\n\n    if (display === \"grid\") {\n      setPerPage(9);\n      setPageCount(Math.ceil(data.length / 9));\n    } else {\n      setPerPage(6);\n      setPageCount(Math.ceil(data.length / 6));\n    }\n  }, [display, data]);\n\n  function handlePageClick(data) {\n    let selected = data.selected;\n    setCurrentPage(selected + 1);\n  }\n\n  if (currentPage > pageCount && display === \"grid\") {\n    var endIndex = pageCount * perPage;\n    var startIndex = endIndex - perPage;\n    var currentRooms = data.slice(startIndex, endIndex);\n  } else {\n    var endIndex = currentPage * perPage;\n    var startIndex = endIndex - perPage;\n    var currentRooms = data.slice(startIndex, endIndex);\n  }\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"container\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"rooms-search\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"form\", {\n    className: \"hotel-search rooms-h flex\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"input-group\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"label\", {\n    htmlFor: \"\"\n  }, \"Check in \"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    type: \"text\",\n    placeholder: \"Choose date\"\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"input-group\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"label\", {\n    htmlFor: \"\"\n  }, \"Check out\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    type: \"text\",\n    placeholder: \"Choose date\"\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"input-group\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"label\", {\n    htmlFor: \"\"\n  }, \"Guests\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    type: \"text\",\n    placeholder: \"Choose date\"\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"button\", {\n    type: \"submit\"\n  }, \"Update\"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"rooms-main-content grid\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"sidebar\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"room-type\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"p\", null, \"Room Type\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"label\", {\n    htmlFor: \"deluxe-room\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    type: \"checkbox\",\n    id: \"deluxe-room\",\n    name: \"deluxe-room\",\n    value: \"Deluxe Room\"\n  }), \"Deluxe Room\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"label\", {\n    htmlFor: \"luxury-room\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    type: \"checkbox\",\n    id: \"luxury-room\",\n    name: \"luxury-room\",\n    value: \"Luxury Room\"\n  }), \"Luxury Room\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"label\", {\n    htmlFor: \"family-room\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    type: \"checkbox\",\n    id: \"family-room\",\n    name: \"family-room\",\n    value: \"Family Room\"\n  }), \"Family Room\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"label\", {\n    htmlFor: \"couple-room\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    type: \"checkbox\",\n    id: \"couple-room\",\n    name: \"couple-room\",\n    value: \"Couple Room\"\n  }), \"Couple Room\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"label\", {\n    htmlFor: \"standard-room\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    type: \"checkbox\",\n    id: \"standard-room\",\n    name: \"standard-room\",\n    value: \"Standard Room\"\n  }), \"Standard Room\"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"content\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_rooms_sortby__WEBPACK_IMPORTED_MODULE_2__.default, {\n    perPage: perPage,\n    searchCount: searchCount,\n    clickDropdown: clickDropdown,\n    showDropdown: showDropdown,\n    clickDisplay: clickDisplay\n  }), display === \"stack\" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_rooms_stack_view__WEBPACK_IMPORTED_MODULE_3__.default, {\n    currentRooms: currentRooms\n  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_rooms_grid_view__WEBPACK_IMPORTED_MODULE_4__.default, {\n    currentRooms: currentRooms\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_rooms_paginate__WEBPACK_IMPORTED_MODULE_1__.default, {\n    pageCount: pageCount,\n    handlePageClick: handlePageClick\n  }))));\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Rooms);\n\n//# sourceURL=webpack://hotelx/./client/rooms/rooms.jsx?");
+
+/***/ }),
+
+/***/ "./data/dbConfig.js":
+/*!**************************!*\
+  !*** ./data/dbConfig.js ***!
+  \**************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const knex = __webpack_require__(/*! knex */ \"knex\");\n\nconst config = __webpack_require__(/*! ../knexfile.js */ \"./knexfile.js\");\n\nconst environment = process.env.DB_ENV || \"development\";\nmodule.exports = knex(config[environment]);\n\n//# sourceURL=webpack://hotelx/./data/dbConfig.js?");
+
+/***/ }),
+
+/***/ "./knexfile.js":
+/*!*********************!*\
+  !*** ./knexfile.js ***!
+  \*********************/
+/***/ ((module) => {
+
+eval("// Update with your config settings.\nconst pgConnection = process.env.DATABASE_URL || \"postgres://postgres:Kingdomcome1025&102592@localhost:5432/hotelx\";\nmodule.exports = {\n  development: {\n    client: \"pg\",\n    connection: pgConnection,\n    pool: {\n      min: 2,\n      max: 10\n    },\n    migrations: {\n      directory: \"./data/migrations\"\n    },\n    seeds: {\n      directory: \"./data/seeds\"\n    }\n  }\n};\n\n//# sourceURL=webpack://hotelx/./knexfile.js?");
 
 /***/ }),
 
@@ -235,6 +315,17 @@ eval("// setup all server routes\nconst express = __webpack_require__(/*! expres
 
 "use strict";
 module.exports = require("express");;
+
+/***/ }),
+
+/***/ "knex":
+/*!***********************!*\
+  !*** external "knex" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("knex");;
 
 /***/ }),
 

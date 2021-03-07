@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
-
 import server from "./server";
+import api from "./api";
 
 // express app
 const app = express();
@@ -25,6 +25,7 @@ app.use(express.json());
 
 // setup server routing
 app.use("/", server);
+app.use("/api", api);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
