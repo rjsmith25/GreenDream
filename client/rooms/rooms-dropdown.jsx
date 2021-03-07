@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-function RoomsDropDown({ showDropdown }) {
+function RoomsDropDown({ showDropdown, setShowDropdown }) {
   const dropdownRef = useRef(null);
   const caretDownRef = useRef(null);
 
@@ -11,16 +11,16 @@ function RoomsDropDown({ showDropdown }) {
       ".recommended .fa-caret-down"
     );
     // When the user clicks anywhere thats not the dropdown menu and caret, close it
-    function closeModal(e) {
+    function closeDropdown(e) {
       if (e.target != dropdownRef.current && e.target != caretDownRef.current) {
-        dropdownRef.current.classList.remove("reveal-dropdown");
+        setShowDropdown(false);
       }
     }
 
-    window.addEventListener("click", closeModal);
+    window.addEventListener("click", closeDropdown);
 
     return () => {
-      window.removeEventListener("click", closeModal);
+      window.removeEventListener("click", closeDropdown);
     };
   }, []);
 

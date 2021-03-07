@@ -7,6 +7,7 @@ function RoomsSortby({
   clickDropdown,
   showDropdown,
   clickDisplay,
+  setShowDropdown,
 }) {
   return (
     <div className="sortby">
@@ -35,7 +36,10 @@ function RoomsSortby({
           ></i>
         </div>
       </div>
-      <RoomsDropDown showDropdown={showDropdown} />
+      <RoomsDropDown
+        setShowDropdown={setShowDropdown}
+        showDropdown={showDropdown}
+      />
     </div>
   );
 }

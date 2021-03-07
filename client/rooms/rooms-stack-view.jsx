@@ -1,6 +1,15 @@
 import React from "react";
 
-function RoomsStackView({ currentRooms }) {
+function getDaysBetween(firstDate, secondDate) {
+  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+  // const firstDate = new Date();
+  // const secondDate = new Date(new Date().setDate(new Date().getDate() + 1));
+
+  const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+  return diffDays;
+}
+
+function RoomsStackView({ currentRooms, totalNights }) {
   return (
     <div className="stack-view">
       {currentRooms.map((room, index) => {
@@ -37,6 +46,11 @@ function RoomsStackView({ currentRooms }) {
               <p className="price">
                 <span className="price-font">${room.price}</span>/night
               </p>
+              {totalNights > 1 && (
+                <p className="total-night-price">
+                  {+room.price * totalNights} total
+                </p>
+              )}
               <button>Choose</button>
             </div>
           </div>

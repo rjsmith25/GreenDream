@@ -12,7 +12,14 @@
   border: 2px solid #f2f2f2;
 }
 
-.rooms-h button {
+.rooms-h .rooms-search-button {
+  font-size: 16px;
+  cursor: pointer;
+  width: 222px;
+  height: 39px;
+  align-self: flex-end;
+  color: #fff;
+  border: 0;
   width: 138px;
   background-color: #1caf4d;
 }
@@ -136,13 +143,10 @@
 }
 
 .rooms .room .room-pricing {
-  margin-left: auto;
-}
-
-.rooms .room .room-pricing {
   display: flex;
   flex-direction: column;
   padding: 0px 20px;
+  border-left: 1px dashed #d7dce5;
   margin-left: auto;
 }
 
@@ -289,4 +293,50 @@
   height: 230px;
   overflow: hidden;
   border-radius: 5px;
+}
+
+.guest-dropdown {
+  display: none;
+  position: absolute;
+  top: 67px;
+  z-index: 999;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #f2f2f2;
+  list-style: none;
+  width: 170px;
+}
+
+.guest-dropdown li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.guest-dropdown-reveal {
+  display: block;
+}
+
+.guest-dropdown .fa-minus-circle {
+  margin-right: 5px;
+}
+
+.guest-dropdown .fa-plus-circle:hover,
+.guest-dropdown .fa-minus-circle:hover {
+  color: #f47231;
+}
+
+.guest-dropdown .fa-plus-circle {
+  margin-left: 5px;
+}
+
+.guest-dropdown .fa-minus-circle,
+.guest-dropdown .fa-plus-circle {
+  color: #b6bbc6;
+  cursor: pointer;
+}
+
+.total-night-price {
+  text-align: center;
 }
