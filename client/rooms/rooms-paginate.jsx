@@ -1,9 +1,10 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 
-function RoomsPaginate({ pageCount, handlePageClick }) {
+function RoomsPaginate({ pageCount, handlePageClick, currentPage }) {
   return (
     <ReactPaginate
+      forcePage={currentPage}
       previousLabel={"< prev"}
       containerClassName={"rooms-pagination"}
       nextLabel={"next >"}

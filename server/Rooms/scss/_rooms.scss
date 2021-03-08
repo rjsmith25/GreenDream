@@ -123,7 +123,12 @@
 }
 
 .rooms .room-type label {
+  cursor: pointer;
   margin: 5px 0;
+}
+
+.rooms .room-type label input {
+  cursor: pointer;
 }
 
 .rooms .room .room-pic {

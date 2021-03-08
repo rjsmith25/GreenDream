@@ -2339,9 +2339,11 @@ __webpack_require__.r(__webpack_exports__);
 
 function RoomsPaginate({
   pageCount,
-  handlePageClick
+  handlePageClick,
+  currentPage
 }) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_paginate__WEBPACK_IMPORTED_MODULE_1___default()), {
+    forcePage: currentPage,
     previousLabel: "< prev",
     containerClassName: "rooms-pagination",
     nextLabel: "next >",
@@ -2462,6 +2464,12 @@ function RoomsSearch({
     setEndDate(date);
   }
 
+  function onSubmit(e) {
+    e.preventDefault();
+    let calculateNights = getDaysBetween(startDate, endDate);
+    setTotalNights(calculateNights);
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "rooms-search"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
@@ -2540,7 +2548,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
-function RoomsSideBar() {
+function RoomsSideBar({
+  filter,
+  setfilter
+}) {
+  function onFilterChange(e) {
+    setfilter({ ...filter,
+      [e.target.name]: e.target.checked
+    });
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "sidebar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2548,6 +2565,8 @@ function RoomsSideBar() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Room Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "standard-room"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    checked: filter["standard-room"],
+    onChange: onFilterChange,
     type: "checkbox",
     id: "standard-room",
     name: "standard-room",
@@ -2555,6 +2574,8 @@ function RoomsSideBar() {
   }), "Standard Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "double-room"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    checked: filter["double-room"],
+    onChange: onFilterChange,
     type: "checkbox",
     id: "double-room",
     name: "double-room",
@@ -2562,6 +2583,8 @@ function RoomsSideBar() {
   }), "Double Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "queen-room"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    checked: filter["queen-room"],
+    onChange: onFilterChange,
     type: "checkbox",
     id: "queen-room",
     name: "queen-room",
@@ -2569,6 +2592,8 @@ function RoomsSideBar() {
   }), "Queen Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "king-room"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    checked: filter["king-room"],
+    onChange: onFilterChange,
     type: "checkbox",
     id: "king-room",
     name: "king-room",
@@ -2741,12 +2766,20 @@ __webpack_require__.r(__webpack_exports__);
 
 function Rooms() {
   const [display, setDisplay] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("stack");
+  const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [perPage, setPerPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(10);
   const [data, setData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-  const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const [rooms, setRooms] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [pageCount, setPageCount] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [searchCount, setSearchCount] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [showDropdown, setShowDropdown] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [selectedFilters, setSelectedFilters] = [];
+  const [filter, setfilter] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    "standard-room": false,
+    "double-room": false,
+    "queen-room": false,
+    "king-room": false
+  });
   const [startDate, setStartDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date());
   const [endDate, setEndDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date(new Date().setDate(new Date().getDate() + 1)));
   const [totalNights, setTotalNights] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
@@ -2757,6 +2790,42 @@ function Rooms() {
 
   function clickDisplay(e) {
     setDisplay(e.target.dataset.display);
+  }
+
+  function FilterRooms() {
+    let selectedFilters = [];
+    let newData;
+
+    if (filter["standard-room"]) {
+      selectedFilters.push("Standard Room");
+    }
+
+    if (filter["double-room"]) {
+      selectedFilters.push("Double Room");
+    }
+
+    if (filter["queen-room"]) {
+      selectedFilters.push("Queen Room");
+    }
+
+    if (filter["king-room"]) {
+      selectedFilters.push("King Room");
+    }
+
+    if (selectedFilters.length) {
+      newData = data.filter(data => {
+        return selectedFilters.includes(data.roomtype);
+      });
+      setSearchCount(newData.length);
+      setPageCount(Math.ceil(newData.length / perPage));
+      setCurrentPage(0);
+      setRooms(newData);
+    } else {
+      setSearchCount(data.length);
+      setPageCount(Math.ceil(data.length / perPage));
+      setCurrentPage(0);
+      setRooms(data);
+    }
   } // for intial render get data from database
 
 
@@ -2765,30 +2834,41 @@ function Rooms() {
       setSearchCount(res.data.length);
       setPageCount(Math.ceil(res.data.length / perPage));
       setData(res.data);
+      setRooms(res.data);
     }).catch(err => {
       console.log(err);
     });
-  }, []);
+  }, []); // on filter changes
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (data.length) {
+      FilterRooms();
+    }
+  }, [filter]);
 
   function handlePageClick(data) {
     let selected = data.selected;
-    setCurrentPage(selected + 1);
+    console.log(selected);
+    setCurrentPage(selected);
   }
 
-  var endIndex = currentPage * perPage;
-  var startIndex = endIndex - perPage;
-  var currentRooms = data.slice(startIndex, endIndex);
+  let endIndex = (currentPage + 1) * perPage;
+  let startIndex = endIndex - perPage;
+  let currentRooms = rooms.slice(startIndex, endIndex);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_search__WEBPACK_IMPORTED_MODULE_6__.default, {
     startDate: startDate,
     endDate: endDate,
-    setStartDate: startDate,
+    setStartDate: setStartDate,
     setEndDate: setEndDate,
     setTotalNights: setTotalNights
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "rooms-main-content grid"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_sidebar__WEBPACK_IMPORTED_MODULE_5__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_sidebar__WEBPACK_IMPORTED_MODULE_5__.default, {
+    filter: filter,
+    setfilter: setfilter
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_sortby__WEBPACK_IMPORTED_MODULE_2__.default, {
     perPage: perPage,
@@ -2803,6 +2883,7 @@ function Rooms() {
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_grid_view__WEBPACK_IMPORTED_MODULE_4__.default, {
     currentRooms: currentRooms
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_paginate__WEBPACK_IMPORTED_MODULE_1__.default, {
+    currentPage: currentPage,
     pageCount: pageCount,
     handlePageClick: handlePageClick
   }))));

@@ -9,12 +9,20 @@ import axios from "axios";
 
 function Rooms() {
   const [display, setDisplay] = useState("stack");
+  const [currentPage, setCurrentPage] = useState(0);
   const [perPage, setPerPage] = useState(10);
   const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [rooms, setRooms] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [searchCount, setSearchCount] = useState(0);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedFilters, setSelectedFilters] = [];
+  const [filter, setfilter] = useState({
+    "standard-room": false,
+    "double-room": false,
+    "queen-room": false,
+    "king-room": false,
+  });
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(
     new Date(new Date().setDate(new Date().getDate() + 1))
@@ -29,6 +37,43 @@ function Rooms() {
     setDisplay(e.target.dataset.display);
   }
 
+  function FilterRooms() {
+    let selectedFilters = [];
+    let newData;
+
+    if (filter["standard-room"]) {
+      selectedFilters.push("Standard Room");
+    }
+
+    if (filter["double-room"]) {
+      selectedFilters.push("Double Room");
+    }
+
+    if (filter["queen-room"]) {
+      selectedFilters.push("Queen Room");
+    }
+
+    if (filter["king-room"]) {
+      selectedFilters.push("King Room");
+    }
+
+    if (selectedFilters.length) {
+      newData = data.filter((data) => {
+        return selectedFilters.includes(data.roomtype);
+      });
+
+      setSearchCount(newData.length);
+      setPageCount(Math.ceil(newData.length / perPage));
+      setCurrentPage(0);
+      setRooms(newData);
+    } else {
+      setSearchCount(data.length);
+      setPageCount(Math.ceil(data.length / perPage));
+      setCurrentPage(0);
+      setRooms(data);
+    }
+  }
+
   // for intial render get data from database
   useEffect(() => {
     axios
@@ -37,32 +82,41 @@ function Rooms() {
         setSearchCount(res.data.length);
         setPageCount(Math.ceil(res.data.length / perPage));
         setData(res.data);
+        setRooms(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
+  // on filter changes
+  useEffect(() => {
+    if (data.length) {
+      FilterRooms();
+    }
+  }, [filter]);
+
   function handlePageClick(data) {
     let selected = data.selected;
-    setCurrentPage(selected + 1);
+    console.log(selected);
+    setCurrentPage(selected);
   }
 
-  var endIndex = currentPage * perPage;
-  var startIndex = endIndex - perPage;
-  var currentRooms = data.slice(startIndex, endIndex);
+  let endIndex = (currentPage + 1) * perPage;
+  let startIndex = endIndex - perPage;
+  let currentRooms = rooms.slice(startIndex, endIndex);
 
   return (
     <div className="container">
       <RoomsSearch
         startDate={startDate}
         endDate={endDate}
-        setStartDate={startDate}
+        setStartDate={setStartDate}
         setEndDate={setEndDate}
         setTotalNights={setTotalNights}
       />
       <div className="rooms-main-content grid">
-        <RoomsSideBar />
+        <RoomsSideBar filter={filter} setfilter={setfilter} />
         <div className="content">
           <RoomsSortby
             perPage={perPage}
@@ -81,6 +135,7 @@ function Rooms() {
             <RoomsGridView currentRooms={currentRooms} />
           )}
           <RoomsPaginate
+            currentPage={currentPage}
             pageCount={pageCount}
             handlePageClick={handlePageClick}
           />

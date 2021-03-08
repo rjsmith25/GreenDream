@@ -109,6 +109,12 @@ function RoomsSearch({
     setEndDate(date);
   }
 
+  function onSubmit(e) {
+    e.preventDefault();
+    let calculateNights = getDaysBetween(startDate, endDate);
+    setTotalNights(calculateNights);
+  }
+
   return (
     <div className="rooms-search">
       <form className="hotel-search rooms-h flex">
