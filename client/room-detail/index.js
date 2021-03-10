@@ -1,6 +1,6 @@
 import React from "react";
 import { hydrate } from "react-dom";
-import Rooms from "./rooms";
+import RoomDetail from "./room-detail";
 
 let data = window.__data__;
 delete window.__data__;
@@ -9,6 +9,6 @@ let scriptTag = document.getElementById("page-ssr");
 scriptTag.remove();
 
 hydrate(
-  <Rooms data={data.data} rooms={data.rooms} />,
-  document.querySelector(".rooms")
+  <RoomDetail room={data.room} />,
+  document.querySelector(".room-detail")
 );

@@ -1,8 +1,19 @@
 import React, { useEffect, useRef } from "react";
 
-function RoomsDropDown({ showDropdown, setShowDropdown }) {
+function RoomsDropDown({
+  showDropdown,
+  setShowDropdown,
+  selected,
+  setSelected,
+}) {
   const dropdownRef = useRef(null);
   const caretDownRef = useRef(null);
+
+  function onSelectClick(e) {
+    let selected = e.target.dataset.option;
+    console.log(selected);
+    setSelected(selected);
+  }
 
   // handles drop down when you click away
   useEffect(() => {
@@ -32,11 +43,18 @@ function RoomsDropDown({ showDropdown, setShowDropdown }) {
           : "recommended-dropdown"
       }
     >
-      <li>Recommended</li>
-      <li>Price (low to high)</li>
-      <li>Price (high to low)</li>
-      <li>Rate (1 to 5)</li>
-      <li>Rate (5 to 1)</li>
+      <li onClick={onSelectClick} data-option="plow">
+        Price (low to high)
+      </li>
+      <li onClick={onSelectClick} data-option="phigh">
+        Price (high to low)
+      </li>
+      <li onClick={onSelectClick} data-option="rlow">
+        Rate (1 to 5)
+      </li>
+      <li onClick={onSelectClick} data-option="rhigh">
+        Rate (5 to 1)
+      </li>
     </ul>
   );
 }

@@ -1,5 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import RoomsDropDown from "./rooms-dropdown";
+
+const options = {
+  plow: "Price (low to high)",
+  phigh: "Price (high to low)",
+  rhigh: "Rate (5 to 1)",
+  rlow: "Rate (1 to 5)",
+};
 
 function RoomsSortby({
   perPage,
@@ -8,6 +15,8 @@ function RoomsSortby({
   showDropdown,
   clickDisplay,
   setShowDropdown,
+  selected,
+  setSelected,
 }) {
   return (
     <div className="sortby">
@@ -19,7 +28,7 @@ function RoomsSortby({
       <div className="options">
         <div className="recommended">
           <p>
-            Recommended{" "}
+            {options[selected]}
             <i onClick={clickDropdown} className="fas fa-caret-down"></i>
           </p>
         </div>
@@ -37,6 +46,8 @@ function RoomsSortby({
         </div>
       </div>
       <RoomsDropDown
+        selected={selected}
+        setSelected={setSelected}
         setShowDropdown={setShowDropdown}
         showDropdown={showDropdown}
       />

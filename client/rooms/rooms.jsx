@@ -7,12 +7,12 @@ import RoomsSideBar from "./rooms-sidebar";
 import RoomsSearch from "./rooms-search";
 import axios from "axios";
 
-function Rooms() {
+function Rooms(props) {
   const [display, setDisplay] = useState("stack");
   const [currentPage, setCurrentPage] = useState(0);
   const [perPage, setPerPage] = useState(10);
-  const [data, setData] = useState([]);
-  const [rooms, setRooms] = useState([]);
+  const [data, setData] = useState(props.data || []);
+  const [rooms, setRooms] = useState(props.rooms || []);
   const [pageCount, setPageCount] = useState(0);
   const [searchCount, setSearchCount] = useState(0);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -28,6 +28,7 @@ function Rooms() {
     new Date(new Date().setDate(new Date().getDate() + 1))
   );
   const [totalNights, setTotalNights] = useState(1);
+  const [selected, setSelected] = useState("plow");
 
   function clickDropdown() {
     setShowDropdown(!showDropdown);
@@ -76,25 +77,51 @@ function Rooms() {
 
   // for intial render get data from database
   useEffect(() => {
-    axios
-      .get("/api/rooms")
-      .then((res) => {
-        setSearchCount(res.data.length);
-        setPageCount(Math.ceil(res.data.length / perPage));
-        setData(res.data);
-        setRooms(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setSearchCount(data.length);
+    setPageCount(Math.ceil(data.length / perPage));
+    setRooms(data.sort(sortPriceLow));
   }, []);
 
-  // on filter changes
+  // on room type filter changes
   useEffect(() => {
     if (data.length) {
       FilterRooms();
     }
   }, [filter]);
+
+  useEffect(() => {
+    if (selected === "plow") {
+      setRooms(rooms.sort(sortPriceLow));
+    }
+
+    if (selected === "phigh") {
+      setRooms(rooms.sort(sortPriceHigh));
+    }
+
+    if (selected === "rlow") {
+      setRooms(rooms.sort(sortReviewLow));
+    }
+
+    if (selected === "rhigh") {
+      setRooms(rooms.sort(sortReviewHigh));
+    }
+  }, [selected]);
+
+  function sortPriceLow(a, b) {
+    return +a.price - +b.price;
+  }
+
+  function sortPriceHigh(a, b) {
+    return +b.price - +a.price;
+  }
+
+  function sortReviewLow(a, b) {
+    return a.reviewCount - b.reviewCount;
+  }
+
+  function sortReviewHigh(a, b) {
+    return b.reviewCount - a.reviewCount;
+  }
 
   function handlePageClick(data) {
     let selected = data.selected;
@@ -125,6 +152,8 @@ function Rooms() {
             setShowDropdown={setShowDropdown}
             showDropdown={showDropdown}
             clickDisplay={clickDisplay}
+            selected={selected}
+            setSelected={setSelected}
           />
           {display === "stack" ? (
             <RoomsStackView

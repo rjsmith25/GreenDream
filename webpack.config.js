@@ -15,6 +15,7 @@ const clientConfig = {
   mode: mode,
   entry: {
     rooms: "./client/rooms",
+    "room-detail": "./client/room-detail",
   },
   output: {
     path: path.join(__dirname, "public/js"),

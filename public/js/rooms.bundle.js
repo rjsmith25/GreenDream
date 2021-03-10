@@ -2232,10 +2232,19 @@ __webpack_require__.r(__webpack_exports__);
 
 function RoomsDropDown({
   showDropdown,
-  setShowDropdown
+  setShowDropdown,
+  selected,
+  setSelected
 }) {
   const dropdownRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const caretDownRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null); // handles drop down when you click away
+  const caretDownRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+
+  function onSelectClick(e) {
+    let selected = e.target.dataset.option;
+    console.log(selected);
+    setSelected(selected);
+  } // handles drop down when you click away
+
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dropdownRef.current = document.querySelector(".recommended-dropdown");
@@ -2254,7 +2263,19 @@ function RoomsDropDown({
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: showDropdown ? "recommended-dropdown reveal-dropdown" : "recommended-dropdown"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Recommended"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Price (low to high)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Price (high to low)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Rate (1 to 5)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Rate (5 to 1)"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    onClick: onSelectClick,
+    "data-option": "plow"
+  }, "Price (low to high)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    onClick: onSelectClick,
+    "data-option": "phigh"
+  }, "Price (high to low)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    onClick: onSelectClick,
+    "data-option": "rlow"
+  }, "Rate (1 to 5)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    onClick: onSelectClick,
+    "data-option": "rhigh"
+  }, "Rate (5 to 1)"));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RoomsDropDown);
@@ -2620,6 +2641,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _rooms_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rooms-dropdown */ "./client/rooms/rooms-dropdown.jsx");
 
 
+const options = {
+  plow: "Price (low to high)",
+  phigh: "Price (high to low)",
+  rhigh: "Rate (5 to 1)",
+  rlow: "Rate (1 to 5)"
+};
 
 function RoomsSortby({
   perPage,
@@ -2627,7 +2654,9 @@ function RoomsSortby({
   clickDropdown,
   showDropdown,
   clickDisplay,
-  setShowDropdown
+  setShowDropdown,
+  selected,
+  setSelected
 }) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "sortby"
@@ -2637,7 +2666,7 @@ function RoomsSortby({
     className: "options"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "recommended"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Recommended", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, options[selected], /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     onClick: clickDropdown,
     className: "fas fa-caret-down"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2651,6 +2680,8 @@ function RoomsSortby({
     "data-display": "stack",
     className: "fas fa-bars"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_dropdown__WEBPACK_IMPORTED_MODULE_1__.default, {
+    selected: selected,
+    setSelected: setSelected,
     setShowDropdown: setShowDropdown,
     showDropdown: showDropdown
   }));
@@ -2764,12 +2795,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Rooms() {
+function Rooms(props) {
   const [display, setDisplay] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("stack");
   const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [perPage, setPerPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(10);
-  const [data, setData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-  const [rooms, setRooms] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [data, setData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.data || []);
+  const [rooms, setRooms] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.rooms || []);
   const [pageCount, setPageCount] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [searchCount, setSearchCount] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [showDropdown, setShowDropdown] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -2783,6 +2814,7 @@ function Rooms() {
   const [startDate, setStartDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date());
   const [endDate, setEndDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date(new Date().setDate(new Date().getDate() + 1)));
   const [totalNights, setTotalNights] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const [selected, setSelected] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("plow");
 
   function clickDropdown() {
     setShowDropdown(!showDropdown);
@@ -2830,21 +2862,49 @@ function Rooms() {
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    axios__WEBPACK_IMPORTED_MODULE_7___default().get("/api/rooms").then(res => {
-      setSearchCount(res.data.length);
-      setPageCount(Math.ceil(res.data.length / perPage));
-      setData(res.data);
-      setRooms(res.data);
-    }).catch(err => {
-      console.log(err);
-    });
-  }, []); // on filter changes
+    setSearchCount(data.length);
+    setPageCount(Math.ceil(data.length / perPage));
+    setRooms(data.sort(sortPriceLow));
+  }, []); // on room type filter changes
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (data.length) {
       FilterRooms();
     }
   }, [filter]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (selected === "plow") {
+      setRooms(rooms.sort(sortPriceLow));
+    }
+
+    if (selected === "phigh") {
+      setRooms(rooms.sort(sortPriceHigh));
+    }
+
+    if (selected === "rlow") {
+      setRooms(rooms.sort(sortReviewLow));
+    }
+
+    if (selected === "rhigh") {
+      setRooms(rooms.sort(sortReviewHigh));
+    }
+  }, [selected]);
+
+  function sortPriceLow(a, b) {
+    return +a.price - +b.price;
+  }
+
+  function sortPriceHigh(a, b) {
+    return +b.price - +a.price;
+  }
+
+  function sortReviewLow(a, b) {
+    return a.reviewCount - b.reviewCount;
+  }
+
+  function sortReviewHigh(a, b) {
+    return b.reviewCount - a.reviewCount;
+  }
 
   function handlePageClick(data) {
     let selected = data.selected;
@@ -2876,7 +2936,9 @@ function Rooms() {
     clickDropdown: clickDropdown,
     setShowDropdown: setShowDropdown,
     showDropdown: showDropdown,
-    clickDisplay: clickDisplay
+    clickDisplay: clickDisplay,
+    selected: selected,
+    setSelected: setSelected
   }), display === "stack" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_stack_view__WEBPACK_IMPORTED_MODULE_3__.default, {
     currentRooms: currentRooms,
     totalNights: totalNights
@@ -48096,7 +48158,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.hydrate)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms__WEBPACK_IMPORTED_MODULE_2__.default, null), document.querySelector(".rooms"));
+let data = window.__data__;
+delete window.__data__;
+let scriptTag = document.getElementById("page-ssr");
+scriptTag.remove();
+(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.hydrate)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms__WEBPACK_IMPORTED_MODULE_2__.default, {
+  data: data.data,
+  rooms: data.rooms
+}), document.querySelector(".rooms"));
 })();
 
 /******/ })()
