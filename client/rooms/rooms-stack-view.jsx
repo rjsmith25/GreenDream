@@ -1,15 +1,15 @@
-import React from "react";
-
-function getDaysBetween(firstDate, secondDate) {
-  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-  // const firstDate = new Date();
-  // const secondDate = new Date(new Date().setDate(new Date().getDate() + 1));
-
-  const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-  return diffDays;
-}
+import React, { useEffect } from "react";
+let BASE_URL;
 
 function RoomsStackView({ currentRooms, totalNights }) {
+  useEffect(() => {
+    BASE_URL =
+      window.location.protocol +
+      "//" +
+      window.location.hostname +
+      (window.location.port ? ":" + window.location.port : "");
+  }, []);
+
   return (
     <div className="stack-view">
       {currentRooms.map((room, index) => {
@@ -51,7 +51,13 @@ function RoomsStackView({ currentRooms, totalNights }) {
                   {+room.price * totalNights} total
                 </p>
               )}
-              <button>Choose</button>
+              <button
+                onClick={() => {
+                  window.location.href = `${BASE_URL}/room/${room.id}`;
+                }}
+              >
+                Choose
+              </button>
             </div>
           </div>
         );

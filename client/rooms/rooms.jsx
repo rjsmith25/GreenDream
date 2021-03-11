@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import RoomsPaginate from "./rooms-paginate";
 import RoomsSortby from "./rooms-sortby";
 import RoomsStackView from "./rooms-stack-view";
@@ -8,6 +8,7 @@ import RoomsSearch from "./rooms-search";
 import axios from "axios";
 
 function Rooms(props) {
+  const contentRef = useRef(null);
   const [display, setDisplay] = useState("stack");
   const [currentPage, setCurrentPage] = useState(0);
   const [perPage, setPerPage] = useState(10);
@@ -75,8 +76,9 @@ function Rooms(props) {
     }
   }
 
-  // for intial render get data from database
+  // for intial render
   useEffect(() => {
+    contentRef.current = document.querySelector(".hotel-search");
     setSearchCount(data.length);
     setPageCount(Math.ceil(data.length / perPage));
     setRooms(data.sort(sortPriceLow));
@@ -84,9 +86,7 @@ function Rooms(props) {
 
   // on room type filter changes
   useEffect(() => {
-    if (data.length) {
-      FilterRooms();
-    }
+    FilterRooms();
   }, [filter]);
 
   useEffect(() => {
@@ -125,8 +125,8 @@ function Rooms(props) {
 
   function handlePageClick(data) {
     let selected = data.selected;
-    console.log(selected);
     setCurrentPage(selected);
+    contentRef.current.scrollIntoView({ behavior: "smooth" });
   }
 
   let endIndex = (currentPage + 1) * perPage;

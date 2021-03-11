@@ -6,7 +6,11 @@ function RoomDetailReviews() {
       <div className="review flex">
         <div className="reviewer-info flex">
           <div className="reviewer-img">
-            <img src="" alt="" />
+            <img
+              className="responsive-img"
+              src="/img/default_profile_pic.jpg"
+              alt="profile pic"
+            />
           </div>
           <p className="reviewer-name">Julia Joeh</p>
         </div>
@@ -34,7 +38,11 @@ function RoomDetailReviews() {
       <div className="review flex">
         <div className="reviewer-info flex">
           <div className="reviewer-img">
-            <img src="" alt="" />
+            <img
+              className="responsive-img"
+              src="/img/default_profile_pic.jpg"
+              alt="profile pic"
+            />
           </div>
           <p className="reviewer-name">Julia Joeh</p>
         </div>
@@ -62,7 +70,11 @@ function RoomDetailReviews() {
       <div className="review flex">
         <div className="reviewer-info flex">
           <div className="reviewer-img">
-            <img src="" alt="" />
+            <img
+              className="responsive-img"
+              src="/img/default_profile_pic.jpg"
+              alt="profile pic"
+            />
           </div>
           <p className="reviewer-name">Julia Joeh</p>
         </div>
@@ -90,7 +102,11 @@ function RoomDetailReviews() {
       <div className="review flex">
         <div className="reviewer-info flex">
           <div className="reviewer-img">
-            <img src="" alt="" />
+            <img
+              className="responsive-img"
+              src="/img/default_profile_pic.jpg"
+              alt="profile pic"
+            />
           </div>
           <p className="reviewer-name">Julia Joeh</p>
         </div>

@@ -2704,20 +2704,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
-
-function getDaysBetween(firstDate, secondDate) {
-  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-  // const firstDate = new Date();
-  // const secondDate = new Date(new Date().setDate(new Date().getDate() + 1));
-
-  const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-  return diffDays;
-}
+let BASE_URL;
 
 function RoomsStackView({
   currentRooms,
   totalNights
 }) {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    BASE_URL = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "stack-view"
   }, currentRooms.map((room, index) => {
@@ -2758,7 +2753,11 @@ function RoomsStackView({
       className: "price-font"
     }, "$", room.price), "/night"), totalNights > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
       className: "total-night-price"
-    }, +room.price * totalNights, " total"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Choose")));
+    }, +room.price * totalNights, " total"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: () => {
+        window.location.href = `${BASE_URL}/room/${room.id}`;
+      }
+    }, "Choose")));
   }));
 }
 
@@ -2796,6 +2795,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Rooms(props) {
+  const contentRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const [display, setDisplay] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("stack");
   const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [perPage, setPerPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(10);
@@ -2858,19 +2858,18 @@ function Rooms(props) {
       setCurrentPage(0);
       setRooms(data);
     }
-  } // for intial render get data from database
+  } // for intial render
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    contentRef.current = document.querySelector(".hotel-search");
     setSearchCount(data.length);
     setPageCount(Math.ceil(data.length / perPage));
     setRooms(data.sort(sortPriceLow));
   }, []); // on room type filter changes
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (data.length) {
-      FilterRooms();
-    }
+    FilterRooms();
   }, [filter]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (selected === "plow") {
@@ -2908,8 +2907,10 @@ function Rooms(props) {
 
   function handlePageClick(data) {
     let selected = data.selected;
-    console.log(selected);
     setCurrentPage(selected);
+    contentRef.current.scrollIntoView({
+      behavior: "smooth"
+    });
   }
 
   let endIndex = (currentPage + 1) * perPage;

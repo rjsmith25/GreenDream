@@ -163,11 +163,15 @@ li.detail-tab-active {
   font-weight: bold;
 }
 
-.room-detail .reviewer-info .reviewer-img {
-  width: 73px;
-  height: 73px;
+// .room-detail .reviewer-info .reviewer-img {
+//   width: 73px;
+//   height: 73px;
+//   border-radius: 50%;
+//   background-color: #b6bbc6;
+// }
+
+.room-detail .reviewer-info .reviewer-img img {
   border-radius: 50%;
-  background-color: #b6bbc6;
 }
 
 .room-detail .review-meta-data > * {
@@ -189,8 +193,4 @@ li.detail-tab-active {
 
 .room-detail .photos .img-option img {
   height: 68px;
-}
-
-.room-detail .photos .main-photo img {
-  height: 485px;
 }
