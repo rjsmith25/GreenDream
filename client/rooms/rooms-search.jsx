@@ -26,9 +26,11 @@ function RoomsSearch({
   const dropdownChildrenRef = useRef(null);
   const dropdownSpanRef = useRef(null);
   const dropdownIRef = useRef(null);
+  const caretDown = useRef(null);
 
   // handles drop down when you click away
   useEffect(() => {
+    caretDown.current = document.querySelector(".fa-caret-down");
     dropdownRef.current = document.querySelector(".guest-dropdown");
     dropdownChildrenRef.current = document.querySelectorAll(
       ".guest-dropdown > li"
@@ -45,6 +47,7 @@ function RoomsSearch({
     // When the user clicks anywhere thats not the dropdown menu and caret, close it
     function closeDropdown(e) {
       if (
+        e.target != caretDown.current &&
         e.target != dropdownRef.current &&
         e.target != guestfieldRef.current &&
         e.target != dropdownChildrenRef.current[0] &&
@@ -144,9 +147,10 @@ function RoomsSearch({
         <div className="input-group guest-field-group">
           <label htmlFor="">Guests</label>
           <input
+            readOnly={true}
             onClick={onDropdownChange}
             className="guest-field"
-            defaultValue={`${adults} adult, children ${children}`}
+            value={`${adults} adult, children ${children}`}
             type="text"
           />
           <i onClick={onDropdownChange} className="fas fa-caret-down"></i>

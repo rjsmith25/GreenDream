@@ -12,6 +12,7 @@ async function RoomDetail(req, res, next) {
     const content = renderToString(<RoomDetailComponent room={room} />);
     res.render("RoomDetail/roomdetail.pug", { content, roomtype, roomData });
   } catch (e) {
+    console.log(e);
     next(e);
   }
 }

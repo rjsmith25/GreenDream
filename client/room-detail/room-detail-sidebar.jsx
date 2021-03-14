@@ -1,26 +1,37 @@
 import React from "react";
+import RoomDetailSidebarForm from "./room-detail-sidebar-form";
 
-function RoomDetailSidebar() {
+function RoomDetailSidebar({
+  OpenDetailModal,
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
+  adults,
+  setAdults,
+  children,
+  setChildren,
+}) {
+  function onStartDateChange(date) {
+    setStartDate(date);
+  }
+
+  function onEndDateChange(date) {
+    setEndDate(date);
+  }
   return (
     <aside className="side-bar">
-      <form className="flex">
-        <div className="button-container">
-          <button className="book-now">Book Now</button>
-        </div>
-        <div className="form-group flex">
-          <label>Check in</label>
-          <input />
-        </div>
-        <div className="form-group flex">
-          <label>Check out</label>
-          <input />
-        </div>
-        <div className="form-group flex">
-          <label>Guests</label>
-          <input />
-        </div>
-        <button className="update">Update</button>
-      </form>
+      <RoomDetailSidebarForm
+        startDate={startDate}
+        endDate={endDate}
+        onStartDateChange={onStartDateChange}
+        onEndDateChange={onEndDateChange}
+        OpenDetailModal={OpenDetailModal}
+        adults={adults}
+        setAdults={setAdults}
+        children={children}
+        setChildren={setChildren}
+      />
       <div className="get-help">
         <p>Need our help?</p>
         <p>

@@ -78,3 +78,10 @@ footer .grid {
 .footer-newsletter ul li:last-child {
   margin-right: 0;
 }
+
+@media screen and (max-width: 668px) {
+  footer .grid {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+}

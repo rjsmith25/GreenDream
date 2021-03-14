@@ -16,15 +16,5 @@ header.home-header
               li
                 a(href='/contact') Contact     
         .header-lower.flex
-          h1.header-headline Book your best room      
-          form.hotel-search.flex
-            .input-group
-              label(for='') Check in         
-              input(type='text', placeholder='Choose date')         
-            .input-group
-              label(for='') Check out           
-              input(type='text', placeholder='Choose date')        
-            .input-group
-              label(for='') Guests           
-              input(type='text', placeholder='Choose date')        
-            button.home-search(type='submit') check availability
+          h1.header-headline Book your best room 
+          <form class="hotel-search flex">!{content}</form>

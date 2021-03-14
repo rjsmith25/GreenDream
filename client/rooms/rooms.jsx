@@ -12,12 +12,13 @@ function Rooms(props) {
   const [display, setDisplay] = useState("stack");
   const [currentPage, setCurrentPage] = useState(0);
   const [perPage, setPerPage] = useState(10);
-  const [data, setData] = useState(props.data || []);
+  const [data, setData] = useState(props.data.sort(sortPriceLow) || []);
   const [rooms, setRooms] = useState(props.rooms || []);
-  const [pageCount, setPageCount] = useState(0);
-  const [searchCount, setSearchCount] = useState(0);
+  const [pageCount, setPageCount] = useState(
+    Math.ceil(data.length / perPage) || 0
+  );
+  const [searchCount, setSearchCount] = useState(data.length || 0);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [selectedFilters, setSelectedFilters] = [];
   const [filter, setfilter] = useState({
     "standard-room": false,
     "double-room": false,
@@ -79,17 +80,18 @@ function Rooms(props) {
   // for intial render
   useEffect(() => {
     contentRef.current = document.querySelector(".hotel-search");
-    setSearchCount(data.length);
-    setPageCount(Math.ceil(data.length / perPage));
-    setRooms(data.sort(sortPriceLow));
+    // setSearchCount(data.length);
+    // setPageCount(Math.ceil(data.length / perPage));
+    // setRooms(data.sort(sortPriceLow));
   }, []);
 
   // on room type filter changes
-  useEffect(() => {
-    FilterRooms();
-  }, [filter]);
+  // useEffect(() => {
+  //   FilterRooms();
+  // }, [filter]);
 
   useEffect(() => {
+    FilterRooms();
     if (selected === "plow") {
       setRooms(rooms.sort(sortPriceLow));
     }
@@ -105,7 +107,7 @@ function Rooms(props) {
     if (selected === "rhigh") {
       setRooms(rooms.sort(sortReviewHigh));
     }
-  }, [selected]);
+  }, [filter, selected]);
 
   function sortPriceLow(a, b) {
     return +a.price - +b.price;

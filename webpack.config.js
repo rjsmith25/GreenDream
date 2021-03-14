@@ -14,6 +14,7 @@ const clientConfig = {
   devtool: "cheap-source-map",
   mode: mode,
   entry: {
+    home: "./client/home",
     rooms: "./client/rooms",
     "room-detail": "./client/room-detail",
   },
