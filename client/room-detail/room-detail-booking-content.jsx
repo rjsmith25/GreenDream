@@ -6,10 +6,13 @@ import RoomDetailBookingComplete from "./room-detail-booking-complete";
 function RoomDetailBookingContent({
   steps,
   setSteps,
+  room,
   paymentForm,
   bookingForm,
   onPaymentBookingFormChange,
   onBookingFormChange,
+  startDate,
+  endDate,
 }) {
   switch (steps) {
     case 1:
@@ -23,13 +26,17 @@ function RoomDetailBookingContent({
     case 2:
       return (
         <RoomDetailPaymentForm
+          startDate={startDate}
+          endDate={endDate}
+          room={room}
           paymentForm={paymentForm}
+          bookingForm={bookingForm}
           setSteps={setSteps}
           onPaymentBookingFormChange={onPaymentBookingFormChange}
         />
       );
     case 3:
-      return <RoomDetailBookingComplete />;
+      return <RoomDetailBookingComplete bookingForm={bookingForm} />;
     default:
       return null;
   }

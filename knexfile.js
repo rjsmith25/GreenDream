@@ -1,7 +1,8 @@
 // Update with your config settings.
 const pgConnection =
-  process.env.DATABASE_URL ||
-  "postgres://postgres:Kingdomcome1025&102592@localhost:5432/hotelx";
+  process.env.NODE_ENV === "development"
+    ? process.env.DEV_DATABASE_URL
+    : process.env.DATABASE_URL;
 
 module.exports = {
   development: {

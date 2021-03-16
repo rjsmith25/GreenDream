@@ -1,14 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import DatePicker from "react-datepicker";
-
-function getDaysBetween(firstDate, secondDate) {
-  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-  // const firstDate = new Date();
-  // const secondDate = new Date(new Date().setDate(new Date().getDate() + 1));
-
-  const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-  return diffDays;
-}
+import { useDropDownClickAway, getDaysBetween } from "../component";
 
 function RoomsSearch({
   startDate,
@@ -16,61 +8,13 @@ function RoomsSearch({
   setStartDate,
   setEndDate,
   setTotalNights,
+  adults,
+  setAdults,
+  children,
+  setChildren,
 }) {
   const [guestDropDown, setGuestDropDown] = useState(false);
-  const [adults, setAdults] = useState(2);
-  const [children, setChildren] = useState(0);
-
-  const dropdownRef = useRef(null);
-  const guestfieldRef = useRef(null);
-  const dropdownChildrenRef = useRef(null);
-  const dropdownSpanRef = useRef(null);
-  const dropdownIRef = useRef(null);
-  const caretDown = useRef(null);
-
-  // handles drop down when you click away
-  useEffect(() => {
-    caretDown.current = document.querySelector(".fa-caret-down");
-    dropdownRef.current = document.querySelector(".guest-dropdown");
-    dropdownChildrenRef.current = document.querySelectorAll(
-      ".guest-dropdown > li"
-    );
-    dropdownSpanRef.current = document.querySelectorAll(
-      ".guest-dropdown > li > span"
-    );
-
-    dropdownIRef.current = document.querySelectorAll(
-      ".guest-dropdown > li > span > i"
-    );
-
-    guestfieldRef.current = document.querySelector(".guest-field");
-    // When the user clicks anywhere thats not the dropdown menu and caret, close it
-    function closeDropdown(e) {
-      if (
-        e.target != caretDown.current &&
-        e.target != dropdownRef.current &&
-        e.target != guestfieldRef.current &&
-        e.target != dropdownChildrenRef.current[0] &&
-        e.target != dropdownChildrenRef.current[1] &&
-        e.target != dropdownSpanRef.current[0] &&
-        e.target != dropdownSpanRef.current[1] &&
-        e.target != dropdownSpanRef.current[2] &&
-        e.target != dropdownSpanRef.current[3] &&
-        e.target != dropdownIRef.current[0] &&
-        e.target != dropdownIRef.current[1] &&
-        e.target != dropdownIRef.current[2] &&
-        e.target != dropdownIRef.current[3]
-      ) {
-        setGuestDropDown(false);
-      }
-    }
-
-    window.addEventListener("click", closeDropdown, true);
-
-    return () => {
-      window.removeEventListener("click", closeDropdown, true);
-    };
-  }, []);
+  useDropDownClickAway(setGuestDropDown);
 
   function onDropdownChange() {
     setGuestDropDown(!guestDropDown);

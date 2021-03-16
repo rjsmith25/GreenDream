@@ -1,6 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import { useDropDownClickAway } from "../component";
+let BASE_URL;
+
+function formatDate(date_object) {
+  let date = date_object.getDate();
+  let year = date_object.getFullYear();
+  let month = date_object.getMonth() + 1;
+
+  return `${month}-${date}-${year}`;
+}
 
 function HomeSearch() {
   const [adults, setAdults] = useState(2);
@@ -12,6 +21,25 @@ function HomeSearch() {
   const [guestDropDown, setGuestDropDown] = useState(false);
 
   useDropDownClickAway(setGuestDropDown);
+
+  useEffect(() => {
+    BASE_URL =
+      window.location.protocol +
+      "//" +
+      window.location.hostname +
+      (window.location.port ? ":" + window.location.port : "");
+  }, []);
+
+  function onSearchClick(e) {
+    e.preventDefault();
+    const params = new URLSearchParams({
+      start_date: formatDate(startDate),
+      end_date: formatDate(endDate),
+      adults: adults,
+      children: children,
+    });
+    window.location.href = `${BASE_URL}/rooms?${params.toString()}`;
+  }
 
   function onStartDateChange(date) {
     setStartDate(date);
@@ -111,7 +139,7 @@ function HomeSearch() {
           </li>
         </ul>
       </div>
-      <button className="home-search" type="submit">
+      <button onClick={onSearchClick} className="home-search" type="submit">
         check availability
       </button>
     </>

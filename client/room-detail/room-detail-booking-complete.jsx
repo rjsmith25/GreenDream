@@ -1,6 +1,6 @@
 import React from "react";
 
-function RoomDetailBookingComplete() {
+function RoomDetailBookingComplete({ bookingForm }) {
   return (
     <>
       <h2 className="completed-title">Booking completed!</h2>
@@ -20,15 +20,15 @@ function RoomDetailBookingComplete() {
             </div>
             <div className="info flex">
               <p>First name:</p>
-              <p>Nick</p>
+              <p>{bookingForm["first_name"]}</p>
             </div>
             <div className="info info-variant-1 flex">
               <p>Last name:</p>
-              <p>Luskay</p>
+              <p>{bookingForm["last_name"]}</p>
             </div>
             <div className="info flex">
               <p>Email:</p>
-              <p>nickluskay1@email.com</p>
+              <p>{bookingForm.email}</p>
             </div>
           </div>
         </div>

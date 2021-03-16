@@ -12,8 +12,8 @@ function Rooms(props) {
   const [display, setDisplay] = useState("stack");
   const [currentPage, setCurrentPage] = useState(0);
   const [perPage, setPerPage] = useState(10);
-  const [data, setData] = useState(props.data.sort(sortPriceLow) || []);
-  const [rooms, setRooms] = useState(props.rooms || []);
+  const [data, setData] = useState(props.data || []);
+  const [rooms, setRooms] = useState(props.rooms.sort(sortPriceLow) || []);
   const [pageCount, setPageCount] = useState(
     Math.ceil(data.length / perPage) || 0
   );
@@ -25,10 +25,16 @@ function Rooms(props) {
     "queen-room": false,
     "king-room": false,
   });
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(
-    new Date(new Date().setDate(new Date().getDate() + 1))
-  );
+  const [startDate, setStartDate] = useState(() => {
+    return props.startDate ? new Date(props.startDate) : new Date();
+  });
+  const [endDate, setEndDate] = useState(() => {
+    return props.endDate
+      ? new Date(props.endDate)
+      : new Date(new Date().setDate(new Date().getDate() + 1));
+  });
+  const [adults, setAdults] = useState(+props.adults || 2);
+  const [children, setChildren] = useState(+props.children || 0);
   const [totalNights, setTotalNights] = useState(1);
   const [selected, setSelected] = useState("plow");
 
@@ -79,35 +85,31 @@ function Rooms(props) {
 
   // for intial render
   useEffect(() => {
+    //reference scrollIntoView
     contentRef.current = document.querySelector(".hotel-search");
-    // setSearchCount(data.length);
-    // setPageCount(Math.ceil(data.length / perPage));
-    // setRooms(data.sort(sortPriceLow));
   }, []);
-
-  // on room type filter changes
-  // useEffect(() => {
-  //   FilterRooms();
-  // }, [filter]);
 
   useEffect(() => {
     FilterRooms();
+  }, [filter]);
+
+  useEffect(() => {
     if (selected === "plow") {
-      setRooms(rooms.sort(sortPriceLow));
+      setRooms([...rooms.sort(sortPriceLow)]);
     }
 
     if (selected === "phigh") {
-      setRooms(rooms.sort(sortPriceHigh));
+      setRooms([...rooms.sort(sortPriceHigh)]);
     }
 
     if (selected === "rlow") {
-      setRooms(rooms.sort(sortReviewLow));
+      setRooms([...rooms.sort(sortReviewLow)]);
     }
 
     if (selected === "rhigh") {
-      setRooms(rooms.sort(sortReviewHigh));
+      setRooms([...rooms.sort(sortReviewHigh)]);
     }
-  }, [filter, selected]);
+  }, [selected]);
 
   function sortPriceLow(a, b) {
     return +a.price - +b.price;
@@ -143,6 +145,10 @@ function Rooms(props) {
         setStartDate={setStartDate}
         setEndDate={setEndDate}
         setTotalNights={setTotalNights}
+        adults={adults}
+        setAdults={setAdults}
+        children={children}
+        setChildren={setChildren}
       />
       <div className="rooms-main-content grid">
         <RoomsSideBar filter={filter} setfilter={setfilter} />
@@ -159,11 +165,21 @@ function Rooms(props) {
           />
           {display === "stack" ? (
             <RoomsStackView
+              adults={adults}
+              children={children}
+              startDate={startDate}
+              endDate={endDate}
               currentRooms={currentRooms}
               totalNights={totalNights}
             />
           ) : (
-            <RoomsGridView currentRooms={currentRooms} />
+            <RoomsGridView
+              adults={adults}
+              children={children}
+              startDate={startDate}
+              endDate={endDate}
+              currentRooms={currentRooms}
+            />
           )}
           <RoomsPaginate
             currentPage={currentPage}

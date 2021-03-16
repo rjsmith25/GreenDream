@@ -384,6 +384,117 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ "./client/component/calculateTotal.js":
+/*!********************************************!*\
+  !*** ./client/component/calculateTotal.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function calculateTotal(price, days) {
+  return price * days;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calculateTotal);
+
+/***/ }),
+
+/***/ "./client/component/formatDate.js":
+/*!****************************************!*\
+  !*** ./client/component/formatDate.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function formatDate(date_object) {
+  let date = date_object.getDate();
+  let year = date_object.getFullYear();
+  let month = date_object.getMonth() + 1;
+  return `${month}-${date}-${year}`;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (formatDate);
+
+/***/ }),
+
+/***/ "./client/component/fullDateFormat.js":
+/*!********************************************!*\
+  !*** ./client/component/fullDateFormat.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+function FullDateFormat(date_object) {
+  const day_of_week = {
+    0: "Sun",
+    1: "Mon",
+    2: "Tues",
+    3: "Weds",
+    4: "Thurs",
+    5: "Fri",
+    6: "Sat"
+  };
+  const Months = {
+    0: "Jan",
+    1: "Feb",
+    2: "Mar",
+    3: "Apr",
+    4: "May",
+    5: "Jun",
+    6: "Jul",
+    7: "Aug",
+    8: "Sep",
+    9: "Oct",
+    10: "Nov",
+    11: "Dec"
+  };
+  let day = day_of_week[date_object.getDay()];
+  let date = date_object.getDate();
+  let year = date_object.getFullYear();
+  let month = Months[date_object.getMonth()];
+  return `${day}, ${month} ${date}, ${year}`;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FullDateFormat);
+
+/***/ }),
+
+/***/ "./client/component/getDaysBetween.js":
+/*!********************************************!*\
+  !*** ./client/component/getDaysBetween.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function getDaysBetween(firstDate, secondDate) {
+  const oneDay = 24 * 60 * 60 * 1000;
+  const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+  return diffDays;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getDaysBetween);
+
+/***/ }),
+
 /***/ "./client/component/index.js":
 /*!***********************************!*\
   !*** ./client/component/index.js ***!
@@ -393,9 +504,21 @@ module.exports = exports['default'];
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "useDropDownClickAway": () => (/* reexport safe */ _useDropDownClickAway__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "useDropDownClickAway": () => (/* reexport safe */ _useDropDownClickAway__WEBPACK_IMPORTED_MODULE_0__.default),
+/* harmony export */   "getDaysBetween": () => (/* reexport safe */ _getDaysBetween__WEBPACK_IMPORTED_MODULE_1__.default),
+/* harmony export */   "formatDate": () => (/* reexport safe */ _formatDate__WEBPACK_IMPORTED_MODULE_2__.default),
+/* harmony export */   "calculateTotal": () => (/* reexport safe */ _calculateTotal__WEBPACK_IMPORTED_MODULE_4__.default),
+/* harmony export */   "FullDateFormat": () => (/* reexport safe */ _fullDateFormat__WEBPACK_IMPORTED_MODULE_3__.default)
 /* harmony export */ });
 /* harmony import */ var _useDropDownClickAway__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useDropDownClickAway */ "./client/component/useDropDownClickAway.jsx");
+/* harmony import */ var _getDaysBetween__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getDaysBetween */ "./client/component/getDaysBetween.js");
+/* harmony import */ var _formatDate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./formatDate */ "./client/component/formatDate.js");
+/* harmony import */ var _fullDateFormat__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fullDateFormat */ "./client/component/fullDateFormat.js");
+/* harmony import */ var _calculateTotal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./calculateTotal */ "./client/component/calculateTotal.js");
+
+
+
+
 
 
 
@@ -466,6 +589,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+let BASE_URL;
+
+function formatDate(date_object) {
+  let date = date_object.getDate();
+  let year = date_object.getFullYear();
+  let month = date_object.getMonth() + 1;
+  return `${month}-${date}-${year}`;
+}
 
 function HomeSearch() {
   const [adults, setAdults] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(2);
@@ -474,6 +605,20 @@ function HomeSearch() {
   const [endDate, setEndDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date(new Date().setDate(new Date().getDate() + 1)));
   const [guestDropDown, setGuestDropDown] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   (0,_component__WEBPACK_IMPORTED_MODULE_1__.useDropDownClickAway)(setGuestDropDown);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    BASE_URL = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+  }, []);
+
+  function onSearchClick(e) {
+    e.preventDefault();
+    const params = new URLSearchParams({
+      start_date: formatDate(startDate),
+      end_date: formatDate(endDate),
+      adults: adults,
+      children: children
+    });
+    window.location.href = `${BASE_URL}/rooms?${params.toString()}`;
+  }
 
   function onStartDateChange(date) {
     setStartDate(date);
@@ -563,6 +708,7 @@ function HomeSearch() {
     onClick: incrementChildren,
     className: "fas fa-plus-circle"
   }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: onSearchClick,
     className: "home-search",
     type: "submit"
   }, "check availability"));
@@ -45679,8 +45825,9 @@ module.exports = warning;
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
-/******/ 		if(__webpack_module_cache__[moduleId]) {
-/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {

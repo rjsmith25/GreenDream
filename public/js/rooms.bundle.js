@@ -2216,6 +2216,193 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./client/component/calculateTotal.js":
+/*!********************************************!*\
+  !*** ./client/component/calculateTotal.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function calculateTotal(price, days) {
+  return price * days;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calculateTotal);
+
+/***/ }),
+
+/***/ "./client/component/formatDate.js":
+/*!****************************************!*\
+  !*** ./client/component/formatDate.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function formatDate(date_object) {
+  let date = date_object.getDate();
+  let year = date_object.getFullYear();
+  let month = date_object.getMonth() + 1;
+  return `${month}-${date}-${year}`;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (formatDate);
+
+/***/ }),
+
+/***/ "./client/component/fullDateFormat.js":
+/*!********************************************!*\
+  !*** ./client/component/fullDateFormat.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+function FullDateFormat(date_object) {
+  const day_of_week = {
+    0: "Sun",
+    1: "Mon",
+    2: "Tues",
+    3: "Weds",
+    4: "Thurs",
+    5: "Fri",
+    6: "Sat"
+  };
+  const Months = {
+    0: "Jan",
+    1: "Feb",
+    2: "Mar",
+    3: "Apr",
+    4: "May",
+    5: "Jun",
+    6: "Jul",
+    7: "Aug",
+    8: "Sep",
+    9: "Oct",
+    10: "Nov",
+    11: "Dec"
+  };
+  let day = day_of_week[date_object.getDay()];
+  let date = date_object.getDate();
+  let year = date_object.getFullYear();
+  let month = Months[date_object.getMonth()];
+  return `${day}, ${month} ${date}, ${year}`;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FullDateFormat);
+
+/***/ }),
+
+/***/ "./client/component/getDaysBetween.js":
+/*!********************************************!*\
+  !*** ./client/component/getDaysBetween.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function getDaysBetween(firstDate, secondDate) {
+  const oneDay = 24 * 60 * 60 * 1000;
+  const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+  return diffDays;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getDaysBetween);
+
+/***/ }),
+
+/***/ "./client/component/index.js":
+/*!***********************************!*\
+  !*** ./client/component/index.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDropDownClickAway": () => (/* reexport safe */ _useDropDownClickAway__WEBPACK_IMPORTED_MODULE_0__.default),
+/* harmony export */   "getDaysBetween": () => (/* reexport safe */ _getDaysBetween__WEBPACK_IMPORTED_MODULE_1__.default),
+/* harmony export */   "formatDate": () => (/* reexport safe */ _formatDate__WEBPACK_IMPORTED_MODULE_2__.default),
+/* harmony export */   "calculateTotal": () => (/* reexport safe */ _calculateTotal__WEBPACK_IMPORTED_MODULE_4__.default),
+/* harmony export */   "FullDateFormat": () => (/* reexport safe */ _fullDateFormat__WEBPACK_IMPORTED_MODULE_3__.default)
+/* harmony export */ });
+/* harmony import */ var _useDropDownClickAway__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useDropDownClickAway */ "./client/component/useDropDownClickAway.jsx");
+/* harmony import */ var _getDaysBetween__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getDaysBetween */ "./client/component/getDaysBetween.js");
+/* harmony import */ var _formatDate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./formatDate */ "./client/component/formatDate.js");
+/* harmony import */ var _fullDateFormat__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fullDateFormat */ "./client/component/fullDateFormat.js");
+/* harmony import */ var _calculateTotal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./calculateTotal */ "./client/component/calculateTotal.js");
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./client/component/useDropDownClickAway.jsx":
+/*!***************************************************!*\
+  !*** ./client/component/useDropDownClickAway.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+function useDropDownClickAway(setGuestDropDown) {
+  const dropdownRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const guestfieldRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const dropdownChildrenRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const dropdownSpanRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const dropdownIRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const caretDown = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null); // handles drop down when you click away
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    caretDown.current = document.querySelector(".fa-caret-down");
+    dropdownRef.current = document.querySelector(".guest-dropdown");
+    dropdownChildrenRef.current = document.querySelectorAll(".guest-dropdown > li");
+    dropdownSpanRef.current = document.querySelectorAll(".guest-dropdown > li > span");
+    dropdownIRef.current = document.querySelectorAll(".guest-dropdown > li > span > i");
+    guestfieldRef.current = document.querySelector(".guest-field"); // When the user clicks anywhere thats not the dropdown menu and caret, close it
+
+    function closeDropdown(e) {
+      if (e.target != caretDown.current && e.target != dropdownRef.current && e.target != guestfieldRef.current && e.target != dropdownChildrenRef.current[0] && e.target != dropdownChildrenRef.current[1] && e.target != dropdownSpanRef.current[0] && e.target != dropdownSpanRef.current[1] && e.target != dropdownSpanRef.current[2] && e.target != dropdownSpanRef.current[3] && e.target != dropdownIRef.current[0] && e.target != dropdownIRef.current[1] && e.target != dropdownIRef.current[2] && e.target != dropdownIRef.current[3]) {
+        setGuestDropDown(false);
+      }
+    }
+
+    window.addEventListener("click", closeDropdown, true);
+    return () => {
+      window.removeEventListener("click", closeDropdown, true);
+    };
+  }, []);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useDropDownClickAway);
+
+/***/ }),
+
 /***/ "./client/rooms/rooms-dropdown.jsx":
 /*!*****************************************!*\
   !*** ./client/rooms/rooms-dropdown.jsx ***!
@@ -2241,7 +2428,6 @@ function RoomsDropDown({
 
   function onSelectClick(e) {
     let selected = e.target.dataset.option;
-    console.log(selected);
     setSelected(selected);
   } // handles drop down when you click away
 
@@ -2294,15 +2480,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../component */ "./client/component/index.js");
 
+
+let BASE_URL;
 
 function RoomsGridView({
-  currentRooms
+  currentRooms,
+  startDate,
+  endDate,
+  adults,
+  children
 }) {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    BASE_URL = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+  }, []);
+
+  function goDetailPage(id) {
+    return e => {
+      e.preventDefault();
+      const params = new URLSearchParams({
+        start_date: (0,_component__WEBPACK_IMPORTED_MODULE_1__.formatDate)(startDate),
+        end_date: (0,_component__WEBPACK_IMPORTED_MODULE_1__.formatDate)(endDate),
+        adults: adults,
+        children: children
+      });
+      window.location.href = `${BASE_URL}/room/${id}?${params.toString()}`;
+    };
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "grid-view grid"
   }, currentRooms.map((room, index) => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      onClick: goDetailPage(room.id),
       key: index,
       className: "room-card"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
@@ -2394,56 +2605,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-datepicker */ "./node_modules/react-datepicker/dist/react-datepicker.min.js");
-/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-datepicker */ "./node_modules/react-datepicker/dist/react-datepicker.min.js");
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../component */ "./client/component/index.js");
 
 
 
-function getDaysBetween(firstDate, secondDate) {
-  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-  // const firstDate = new Date();
-  // const secondDate = new Date(new Date().setDate(new Date().getDate() + 1));
-
-  const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-  return diffDays;
-}
 
 function RoomsSearch({
   startDate,
   endDate,
   setStartDate,
   setEndDate,
-  setTotalNights
+  setTotalNights,
+  adults,
+  setAdults,
+  children,
+  setChildren
 }) {
   const [guestDropDown, setGuestDropDown] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const [adults, setAdults] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(2);
-  const [children, setChildren] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
-  const dropdownRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const guestfieldRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const dropdownChildrenRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const dropdownSpanRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const dropdownIRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const caretDown = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null); // handles drop down when you click away
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    caretDown.current = document.querySelector(".fa-caret-down");
-    dropdownRef.current = document.querySelector(".guest-dropdown");
-    dropdownChildrenRef.current = document.querySelectorAll(".guest-dropdown > li");
-    dropdownSpanRef.current = document.querySelectorAll(".guest-dropdown > li > span");
-    dropdownIRef.current = document.querySelectorAll(".guest-dropdown > li > span > i");
-    guestfieldRef.current = document.querySelector(".guest-field"); // When the user clicks anywhere thats not the dropdown menu and caret, close it
-
-    function closeDropdown(e) {
-      if (e.target != caretDown.current && e.target != dropdownRef.current && e.target != guestfieldRef.current && e.target != dropdownChildrenRef.current[0] && e.target != dropdownChildrenRef.current[1] && e.target != dropdownSpanRef.current[0] && e.target != dropdownSpanRef.current[1] && e.target != dropdownSpanRef.current[2] && e.target != dropdownSpanRef.current[3] && e.target != dropdownIRef.current[0] && e.target != dropdownIRef.current[1] && e.target != dropdownIRef.current[2] && e.target != dropdownIRef.current[3]) {
-        setGuestDropDown(false);
-      }
-    }
-
-    window.addEventListener("click", closeDropdown, true);
-    return () => {
-      window.removeEventListener("click", closeDropdown, true);
-    };
-  }, []);
+  (0,_component__WEBPACK_IMPORTED_MODULE_1__.useDropDownClickAway)(setGuestDropDown);
 
   function onDropdownChange() {
     setGuestDropDown(!guestDropDown);
@@ -2451,7 +2632,7 @@ function RoomsSearch({
 
   function onButtonClick(e) {
     e.preventDefault();
-    let calculateNights = getDaysBetween(startDate, endDate);
+    let calculateNights = (0,_component__WEBPACK_IMPORTED_MODULE_1__.getDaysBetween)(startDate, endDate);
     setTotalNights(calculateNights);
   }
 
@@ -2489,7 +2670,7 @@ function RoomsSearch({
 
   function onSubmit(e) {
     e.preventDefault();
-    let calculateNights = getDaysBetween(startDate, endDate);
+    let calculateNights = (0,_component__WEBPACK_IMPORTED_MODULE_1__.getDaysBetween)(startDate, endDate);
     setTotalNights(calculateNights);
   }
 
@@ -2501,7 +2682,7 @@ function RoomsSearch({
     className: "input-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: ""
-  }, "Check in "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_datepicker__WEBPACK_IMPORTED_MODULE_1___default()), {
+  }, "Check in "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_datepicker__WEBPACK_IMPORTED_MODULE_2___default()), {
     selected: startDate,
     onChange: onStartDateChange,
     selectsStart: true,
@@ -2512,7 +2693,7 @@ function RoomsSearch({
     className: "input-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: ""
-  }, "Check out"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_datepicker__WEBPACK_IMPORTED_MODULE_1___default()), {
+  }, "Check out"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_datepicker__WEBPACK_IMPORTED_MODULE_2___default()), {
     selected: endDate,
     onChange: onEndDateChange,
     selectsEnd: true,
@@ -2706,16 +2887,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../component */ "./client/component/index.js");
+
 
 let BASE_URL;
 
 function RoomsStackView({
   currentRooms,
-  totalNights
+  totalNights,
+  adults,
+  children,
+  startDate,
+  endDate
 }) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     BASE_URL = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
   }, []);
+
+  function goDetailPage(id) {
+    return e => {
+      e.preventDefault();
+      const params = new URLSearchParams({
+        start_date: (0,_component__WEBPACK_IMPORTED_MODULE_1__.formatDate)(startDate),
+        end_date: (0,_component__WEBPACK_IMPORTED_MODULE_1__.formatDate)(endDate),
+        adults: adults,
+        children: children
+      });
+      window.location.href = `${BASE_URL}/room/${id}?${params.toString()}`;
+    };
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "stack-view"
   }, currentRooms.map((room, index) => {
@@ -2757,9 +2958,7 @@ function RoomsStackView({
     }, "$", room.price), "/night"), totalNights > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
       className: "total-night-price"
     }, +room.price * totalNights, " total"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: () => {
-        window.location.href = `${BASE_URL}/room/${room.id}`;
-      }
+      onClick: goDetailPage(room.id)
     }, "Choose")));
   }));
 }
@@ -2802,8 +3001,8 @@ function Rooms(props) {
   const [display, setDisplay] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("stack");
   const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [perPage, setPerPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(10);
-  const [data, setData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.data.sort(sortPriceLow) || []);
-  const [rooms, setRooms] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.rooms || []);
+  const [data, setData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.data || []);
+  const [rooms, setRooms] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.rooms.sort(sortPriceLow) || []);
   const [pageCount, setPageCount] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(Math.ceil(data.length / perPage) || 0);
   const [searchCount, setSearchCount] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.length || 0);
   const [showDropdown, setShowDropdown] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -2813,8 +3012,14 @@ function Rooms(props) {
     "queen-room": false,
     "king-room": false
   });
-  const [startDate, setStartDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date());
-  const [endDate, setEndDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date(new Date().setDate(new Date().getDate() + 1)));
+  const [startDate, setStartDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => {
+    return props.startDate ? new Date(props.startDate) : new Date();
+  });
+  const [endDate, setEndDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => {
+    return props.endDate ? new Date(props.endDate) : new Date(new Date().setDate(new Date().getDate() + 1));
+  });
+  const [adults, setAdults] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(+props.adults || 2);
+  const [children, setChildren] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(+props.children || 0);
   const [totalNights, setTotalNights] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
   const [selected, setSelected] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("plow");
 
@@ -2864,33 +3069,29 @@ function Rooms(props) {
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    contentRef.current = document.querySelector(".hotel-search"); // setSearchCount(data.length);
-    // setPageCount(Math.ceil(data.length / perPage));
-    // setRooms(data.sort(sortPriceLow));
-  }, []); // on room type filter changes
-  // useEffect(() => {
-  //   FilterRooms();
-  // }, [filter]);
-
+    //reference scrollIntoView
+    contentRef.current = document.querySelector(".hotel-search");
+  }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     FilterRooms();
-
+  }, [filter]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (selected === "plow") {
-      setRooms(rooms.sort(sortPriceLow));
+      setRooms([...rooms.sort(sortPriceLow)]);
     }
 
     if (selected === "phigh") {
-      setRooms(rooms.sort(sortPriceHigh));
+      setRooms([...rooms.sort(sortPriceHigh)]);
     }
 
     if (selected === "rlow") {
-      setRooms(rooms.sort(sortReviewLow));
+      setRooms([...rooms.sort(sortReviewLow)]);
     }
 
     if (selected === "rhigh") {
-      setRooms(rooms.sort(sortReviewHigh));
+      setRooms([...rooms.sort(sortReviewHigh)]);
     }
-  }, [filter, selected]);
+  }, [selected]);
 
   function sortPriceLow(a, b) {
     return +a.price - +b.price;
@@ -2926,7 +3127,11 @@ function Rooms(props) {
     endDate: endDate,
     setStartDate: setStartDate,
     setEndDate: setEndDate,
-    setTotalNights: setTotalNights
+    setTotalNights: setTotalNights,
+    adults: adults,
+    setAdults: setAdults,
+    children: children,
+    setChildren: setChildren
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "rooms-main-content grid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_sidebar__WEBPACK_IMPORTED_MODULE_5__.default, {
@@ -2944,9 +3149,17 @@ function Rooms(props) {
     selected: selected,
     setSelected: setSelected
   }), display === "stack" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_stack_view__WEBPACK_IMPORTED_MODULE_3__.default, {
+    adults: adults,
+    children: children,
+    startDate: startDate,
+    endDate: endDate,
     currentRooms: currentRooms,
     totalNights: totalNights
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_grid_view__WEBPACK_IMPORTED_MODULE_4__.default, {
+    adults: adults,
+    children: children,
+    startDate: startDate,
+    endDate: endDate,
     currentRooms: currentRooms
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_paginate__WEBPACK_IMPORTED_MODULE_1__.default, {
     currentPage: currentPage,
@@ -48077,8 +48290,9 @@ module.exports = warning;
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
-/******/ 		if(__webpack_module_cache__[moduleId]) {
-/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
@@ -48168,7 +48382,11 @@ let scriptTag = document.getElementById("page-ssr");
 scriptTag.remove();
 (0,react_dom__WEBPACK_IMPORTED_MODULE_1__.hydrate)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms__WEBPACK_IMPORTED_MODULE_2__.default, {
   data: data.data,
-  rooms: data.rooms
+  rooms: data.rooms,
+  startDate: data.startDate,
+  endDate: data.endDate,
+  adults: data.adults,
+  children: data.children
 }), document.querySelector(".rooms"));
 })();
 

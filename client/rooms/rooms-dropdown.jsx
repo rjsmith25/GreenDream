@@ -11,7 +11,6 @@ function RoomsDropDown({
 
   function onSelectClick(e) {
     let selected = e.target.dataset.option;
-    console.log(selected);
     setSelected(selected);
   }
 

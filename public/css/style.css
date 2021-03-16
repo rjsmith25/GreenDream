@@ -77,6 +77,39 @@ textarea {
   color: #1caf4d;
 }
 
+.loading-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 70px 0;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 5px solid #1caf4d;
+  border-color: #1caf4d transparent #1caf4d transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .general-header {
   height: 400px;
   background: url("../img/headerbg2.jpg") no-repeat center center;
@@ -1042,7 +1075,7 @@ footer .grid {
 }
 .home-header {
   height: 800px;
-  background: url("../img/hotel-header.jpg") no-repeat center center;
+  background: url("../img/hotel-header5.jpg") no-repeat center center;
   background-size: cover;
 }
 
@@ -1054,7 +1087,11 @@ header nav {
   justify-content: space-between;
 }
 
-.brand-name h1 {
+.home-header .brand-name h1 {
+  color: #fff;
+}
+
+.general-header .brand-name h1 {
   color: #2ec84f;
 }
 
@@ -1832,6 +1869,7 @@ header nav {
 }
 
 .rooms .grid-view .room-card {
+  cursor: pointer;
   position: relative;
   padding: 20px;
   background-color: #fff;
@@ -1878,9 +1916,12 @@ header nav {
 
 .rooms .grid-view .room-card-pic {
   width: 250px;
-  height: 230px;
   overflow: hidden;
   border-radius: 5px;
+}
+
+.rooms .grid-view .room-card-pic img {
+  height: 200px;
 }
 
 .guest-dropdown {

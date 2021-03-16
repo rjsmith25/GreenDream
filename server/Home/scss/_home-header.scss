@@ -3,7 +3,7 @@
 
 .home-header {
   height: 800px;
-  background: url("../img/hotel-header.jpg") no-repeat center center;
+  background: url("../img/hotel-header5.jpg") no-repeat center center;
   background-size: cover;
 }
 
@@ -15,7 +15,11 @@ header nav {
   justify-content: space-between;
 }
 
-.brand-name h1 {
+.home-header .brand-name h1 {
+  color: #fff;
+}
+
+.general-header .brand-name h1 {
   color: #2ec84f;
 }
 

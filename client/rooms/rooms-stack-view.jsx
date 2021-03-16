@@ -1,7 +1,15 @@
 import React, { useEffect } from "react";
+import { formatDate } from "../component";
 let BASE_URL;
 
-function RoomsStackView({ currentRooms, totalNights }) {
+function RoomsStackView({
+  currentRooms,
+  totalNights,
+  adults,
+  children,
+  startDate,
+  endDate,
+}) {
   useEffect(() => {
     BASE_URL =
       window.location.protocol +
@@ -9,6 +17,19 @@ function RoomsStackView({ currentRooms, totalNights }) {
       window.location.hostname +
       (window.location.port ? ":" + window.location.port : "");
   }, []);
+
+  function goDetailPage(id) {
+    return (e) => {
+      e.preventDefault();
+      const params = new URLSearchParams({
+        start_date: formatDate(startDate),
+        end_date: formatDate(endDate),
+        adults: adults,
+        children: children,
+      });
+      window.location.href = `${BASE_URL}/room/${id}?${params.toString()}`;
+    };
+  }
 
   return (
     <div className="stack-view">
@@ -51,13 +72,7 @@ function RoomsStackView({ currentRooms, totalNights }) {
                   {+room.price * totalNights} total
                 </p>
               )}
-              <button
-                onClick={() => {
-                  window.location.href = `${BASE_URL}/room/${room.id}`;
-                }}
-              >
-                Choose
-              </button>
+              <button onClick={goDetailPage(room.id)}>Choose</button>
             </div>
           </div>
         );

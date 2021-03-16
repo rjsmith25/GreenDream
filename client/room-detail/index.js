@@ -9,6 +9,12 @@ let scriptTag = document.getElementById("page-ssr");
 scriptTag.remove();
 
 hydrate(
-  <RoomDetail room={data.room} />,
+  <RoomDetail
+    room={data.room}
+    startDate={data.startDate}
+    endDate={data.endDate}
+    adults={data.adults}
+    children={data.children}
+  />,
   document.querySelector(".room-detail")
 );

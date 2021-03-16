@@ -2,11 +2,11 @@ import React from "react";
 
 function RoomDetailBookingForm({ bookingForm, setSteps, onBookingFormChange }) {
   function nextStepsClick(e) {
-    if (!bookingForm["first-name"]) {
+    if (!bookingForm["first_name"]) {
       return;
     }
 
-    if (!bookingForm["last-name"]) {
+    if (!bookingForm["last_name"]) {
       return;
     }
 
@@ -23,30 +23,30 @@ function RoomDetailBookingForm({ bookingForm, setSteps, onBookingFormChange }) {
       <form className="booking-form-fillout">
         <div className="input-group input-group-1 flex">
           <div className="input-box flex">
-            <label htmlFor="first-name">
+            <label htmlFor="first_name">
               First name <span className="required-mark">*</span>
             </label>
             <input
-              id="first-name"
-              name="first-name"
+              id="first_name"
+              name="first_name"
               type="text"
               placeholder="First Name"
               onChange={onBookingFormChange}
-              value={bookingForm["first-name"]}
+              value={bookingForm["first_name"]}
               required={true}
             />
           </div>
           <div className="input-box flex">
-            <label htmlFor="last-name">
+            <label htmlFor="last_name">
               Last name <span className="required-mark">*</span>
             </label>
             <input
-              id="last-name"
-              name="last-name"
+              id="last_name"
+              name="last_name"
               type="text"
               placeholder="Last Name"
               onChange={onBookingFormChange}
-              value={bookingForm["last-name"]}
+              value={bookingForm["last_name"]}
               required={true}
             />
           </div>

@@ -15,14 +15,17 @@
   "dependencies": {
     "axios": "^0.21.1",
     "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "knex": "^0.95.1",
+    "nanoid": "^3.1.22",
     "pg": "^8.5.1",
     "pug": "^3.0.0",
     "react": "^17.0.1",
     "react-datepicker": "^3.6.0",
     "react-dom": "^17.0.1",
-    "react-paginate": "^7.1.0"
+    "react-paginate": "^7.1.0",
+    "stripe": "^8.138.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.16",

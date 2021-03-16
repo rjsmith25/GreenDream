@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RoomDetailSidebar from "./room-detail-sidebar";
 import RoomDetailTab from "./room-detail-tab";
 import RoomDetailContent from "./room-detail-content";
 import RoomDetailModal from "./room-detail-modal";
 import RoomDetailBookingContent from "./room-detail-booking-content";
 import RoomDetailSteps from "./room-detail-steps";
+import RoomDetailBookingInfo from "./room-detail-booking-info";
 
-function RoomDetail({ room }) {
+function RoomDetail(props) {
   const [selectedTab, setSelectedTab] = useState("Description");
   const [steps, setSteps] = useState(1);
   const [showDetailModal, setShowDetailModal] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(
-    new Date(new Date().setDate(new Date().getDate() + 1))
-  );
+  const [startDate, setStartDate] = useState(() => {
+    return props.startDate ? new Date(props.startDate) : new Date();
+  });
+  const [endDate, setEndDate] = useState(() => {
+    return props.endDate
+      ? new Date(props.endDate)
+      : new Date(new Date().setDate(new Date().getDate() + 1));
+  });
   const [bookingForm, setBookingForm] = useState({
-    "first-name": "",
-    "last-name": "",
+    first_name: "",
+    last_name: "",
     email: "",
     phone: "",
     street: "",
@@ -28,13 +33,19 @@ function RoomDetail({ room }) {
     "expiry-date": "",
     cvc: "",
   });
-  const [adults, setAdults] = useState(2);
-  const [children, setChildren] = useState(0);
+  const [adults, setAdults] = useState(+props.adults || 2);
+  const [children, setChildren] = useState(+props.children || 0);
+
+  useEffect(() => {
+    Stripe.setPublishableKey(
+      "pk_test_51IVfkxDJXRSte3d6NIfYevhg4l13WWIOHW5Vh2A3MGym35PvpuXn1ktv99aqpenMvQaSYiTf4E7orGaBL3olxBUx000cYuVDAE"
+    );
+  }, []);
 
   function ResetForm() {
     setBookingForm({
-      "first-name": "",
-      "last-name": "",
+      first_name: "",
+      last_name: "",
       email: "",
       phone: "",
       street: "",
@@ -92,55 +103,24 @@ function RoomDetail({ room }) {
                   <p>Booking Completed!</p>
                 </div>
                 <RoomDetailBookingContent
+                  room={props.room}
                   steps={steps}
                   setSteps={setSteps}
                   paymentForm={paymentForm}
                   bookingForm={bookingForm}
+                  startDate={startDate}
+                  endDate={endDate}
                   onPaymentBookingFormChange={onPaymentBookingFormChange}
                   onBookingFormChange={onBookingFormChange}
                 />
               </div>
-              <div className="booking-detail flex">
-                <div className="content">
-                  <img
-                    className="responsive-img"
-                    src={room.photos[0]}
-                    alt="hotel room"
-                  />
-                  <div className="room-type-rating">
-                    <p>{room.roomtype}</p>
-                    <div className="ratings">
-                      <i className="fas fa-star fa-star-green"></i>
-                      <i className="fas fa-star fa-star-green"></i>
-                      <i className="fas fa-star fa-star-green"></i>
-                      <i className="fas fa-star fa-star-green"></i>
-                      <i className="fas fa-star-half-alt fa-star-green"></i>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className="booking-info">
-                    <p>Check in: Sat, Apr 23, 2016</p>
-                    <p>1 Night(s)</p>
-                    <p>Checkout out: Fri, Apr 29, 2016</p>
-                    <p>Room for 1 adult and 3 children</p>
-                  </div>
-                  <div className="booking-totals">
-                    <div className="room-total">
-                      <span>1 Room x 2 nights</span>
-                      <span>$380.69</span>
-                    </div>
-                    <div className="room-taxes">
-                      <span>Taxes</span>
-                      <span>$55.05</span>
-                    </div>
-                    <div className="calculated-prices">
-                      <span>Total Price</span>
-                      <span>$422.08</span>
-                    </div>
-                  </div>
-                  <hr />
-                </div>
-              </div>
+              <RoomDetailBookingInfo
+                room={props.room}
+                adults={adults}
+                children={children}
+                startDate={startDate}
+                endDate={endDate}
+              />
             </div>
           </div>
         </RoomDetailModal>
@@ -152,7 +132,7 @@ function RoomDetail({ room }) {
             setSelectedTab={setSelectedTab}
           />
           <div className="content">
-            <RoomDetailContent selectedTab={selectedTab} room={room} />
+            <RoomDetailContent selectedTab={selectedTab} room={props.room} />
           </div>
         </div>
         <RoomDetailSidebar

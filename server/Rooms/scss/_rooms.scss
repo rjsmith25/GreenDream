@@ -250,6 +250,7 @@
 }
 
 .rooms .grid-view .room-card {
+  cursor: pointer;
   position: relative;
   padding: 20px;
   background-color: #fff;
@@ -296,9 +297,12 @@
 
 .rooms .grid-view .room-card-pic {
   width: 250px;
-  height: 230px;
   overflow: hidden;
   border-radius: 5px;
+}
+
+.rooms .grid-view .room-card-pic img {
+  height: 200px;
 }
 
 .guest-dropdown {
