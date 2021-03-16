@@ -1,4 +1,5 @@
 // Update with your config settings.
+require("dotenv").config();
 const pgConnection =
   process.env.NODE_ENV === "development"
     ? process.env.DEV_DATABASE_URL
