@@ -13,6 +13,8 @@ function RoomDetailBookingContent({
   onBookingFormChange,
   startDate,
   endDate,
+  bookingid,
+  setBookingID,
 }) {
   switch (steps) {
     case 1:
@@ -28,6 +30,7 @@ function RoomDetailBookingContent({
         <RoomDetailPaymentForm
           startDate={startDate}
           endDate={endDate}
+          setBookingID={setBookingID}
           room={room}
           paymentForm={paymentForm}
           bookingForm={bookingForm}
@@ -36,7 +39,12 @@ function RoomDetailBookingContent({
         />
       );
     case 3:
-      return <RoomDetailBookingComplete bookingForm={bookingForm} />;
+      return (
+        <RoomDetailBookingComplete
+          bookingid={bookingid}
+          bookingForm={bookingForm}
+        />
+      );
     default:
       return null;
   }

@@ -1,10 +1,4 @@
 /******/ (() => { // webpackBootstrap
-<<<<<<< HEAD
-/******/ 	"use strict";
-var __webpack_exports__ = {};
-/******/ })()
-;
-=======
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js":
@@ -48399,4 +48393,3 @@ scriptTag.remove();
 /******/ })()
 ;
 //# sourceMappingURL=rooms.bundle.js.map
->>>>>>> feature/api-customers

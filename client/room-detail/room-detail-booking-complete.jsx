@@ -1,6 +1,6 @@
 import React from "react";
 
-function RoomDetailBookingComplete({ bookingForm }) {
+function RoomDetailBookingComplete({ bookingForm, bookingid }) {
   return (
     <>
       <h2 className="completed-title">Booking completed!</h2>
@@ -16,7 +16,7 @@ function RoomDetailBookingComplete({ bookingForm }) {
           <div className="content">
             <div className="info info-variant-1 flex">
               <p>Booking number:</p>
-              <p>223-456-456</p>
+              <p>{bookingid}</p>
             </div>
             <div className="info flex">
               <p>First name:</p>

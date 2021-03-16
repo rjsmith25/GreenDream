@@ -12,4 +12,5 @@ serverRouter.use("/about", aboutRoute);
 serverRouter.use("/contact", contactRoute);
 serverRouter.use("/rooms", roomsRoute);
 serverRouter.use("/room", roomDetailRoute);
+
 module.exports = serverRouter;

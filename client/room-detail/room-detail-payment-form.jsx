@@ -26,6 +26,7 @@ function RoomDetailPaymentForm({
   bookingForm,
   paymentForm,
   room,
+  setBookingID,
   startDate,
   endDate,
   setSteps,
@@ -78,9 +79,11 @@ function RoomDetailPaymentForm({
         token: stripeToken.id,
       });
 
-      console.log(paymentRes.data);
-      console.log(customerRes.data);
-      console.log(bookingRes.data);
+      setBookingID(bookingRes.data.booking_id);
+
+      // console.log(paymentRes.data);
+      // console.log(customerRes.data);
+      // console.log(bookingRes.data);
       setProcessing(false);
       setSteps(3);
     } catch (e) {
@@ -155,6 +158,10 @@ function RoomDetailPaymentForm({
               Pay & Book Now
             </button>
           </div>
+          <p className="notice">
+            Demo only uses Stripe Payment Api, use credit card number
+            4242424242424242,and random future expiry date, and random cvc.
+          </p>
         </form>
       )}
     </>

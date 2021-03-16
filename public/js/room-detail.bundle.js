@@ -1,10 +1,4 @@
 /******/ (() => { // webpackBootstrap
-<<<<<<< HEAD
-/******/ 	"use strict";
-var __webpack_exports__ = {};
-/******/ })()
-;
-=======
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js":
@@ -2424,7 +2418,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function RoomDetailBookingComplete({
-  bookingForm
+  bookingForm,
+  bookingid
 }) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "completed-title"
@@ -2440,7 +2435,7 @@ function RoomDetailBookingComplete({
     className: "content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "info info-variant-1 flex"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Booking number:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "223-456-456")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Booking number:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, bookingid)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "info flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "First name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, bookingForm["first_name"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "info info-variant-1 flex"
@@ -2482,7 +2477,9 @@ function RoomDetailBookingContent({
   onPaymentBookingFormChange,
   onBookingFormChange,
   startDate,
-  endDate
+  endDate,
+  bookingid,
+  setBookingID
 }) {
   switch (steps) {
     case 1:
@@ -2496,6 +2493,7 @@ function RoomDetailBookingContent({
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_room_detail_payment_form__WEBPACK_IMPORTED_MODULE_2__.default, {
         startDate: startDate,
         endDate: endDate,
+        setBookingID: setBookingID,
         room: room,
         paymentForm: paymentForm,
         bookingForm: bookingForm,
@@ -2505,6 +2503,7 @@ function RoomDetailBookingContent({
 
     case 3:
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_room_detail_booking_complete__WEBPACK_IMPORTED_MODULE_3__.default, {
+        bookingid: bookingid,
         bookingForm: bookingForm
       });
 
@@ -2925,6 +2924,7 @@ function RoomDetailPaymentForm({
   bookingForm,
   paymentForm,
   room,
+  setBookingID,
   startDate,
   endDate,
   setSteps,
@@ -2974,9 +2974,10 @@ function RoomDetailPaymentForm({
         price: (0,_component__WEBPACK_IMPORTED_MODULE_3__.calculateTotal)(+room.price, (0,_component__WEBPACK_IMPORTED_MODULE_3__.getDaysBetween)(startDate, endDate)),
         token: stripeToken.id
       });
-      console.log(paymentRes.data);
-      console.log(customerRes.data);
-      console.log(bookingRes.data);
+      setBookingID(bookingRes.data.booking_id); // console.log(paymentRes.data);
+      // console.log(customerRes.data);
+      // console.log(bookingRes.data);
+
       setProcessing(false);
       setSteps(3);
     } catch (e) {
@@ -3052,7 +3053,9 @@ function RoomDetailPaymentForm({
   }), " Back to your booking details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     disabled: disablePayment,
     onClick: onNextClick
-  }, "Pay & Book Now"))));
+  }, "Pay & Book Now")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "notice"
+  }, "Demo only uses Stripe Payment Api, use credit card number 4242424242424242,and random future expiry date, and random cvc.")));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RoomDetailPaymentForm);
@@ -3642,6 +3645,7 @@ function RoomDetail(props) {
   });
   const [adults, setAdults] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(+props.adults || 2);
   const [children, setChildren] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(+props.children || 0);
+  const [bookingid, setBookingID] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     Stripe.setPublishableKey("pk_test_51IVfkxDJXRSte3d6NIfYevhg4l13WWIOHW5Vh2A3MGym35PvpuXn1ktv99aqpenMvQaSYiTf4E7orGaBL3olxBUx000cYuVDAE");
   }, []);
@@ -3715,6 +3719,8 @@ function RoomDetail(props) {
     bookingForm: bookingForm,
     startDate: startDate,
     endDate: endDate,
+    bookingid: bookingid,
+    setBookingID: setBookingID,
     onPaymentBookingFormChange: onPaymentBookingFormChange,
     onBookingFormChange: onBookingFormChange
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_room_detail_booking_info__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -48961,4 +48967,3 @@ scriptTag.remove();
 /******/ })()
 ;
 //# sourceMappingURL=room-detail.bundle.js.map
->>>>>>> feature/api-customers

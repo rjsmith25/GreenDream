@@ -35,6 +35,7 @@ function RoomDetail(props) {
   });
   const [adults, setAdults] = useState(+props.adults || 2);
   const [children, setChildren] = useState(+props.children || 0);
+  const [bookingid, setBookingID] = useState(null);
 
   useEffect(() => {
     Stripe.setPublishableKey(
@@ -110,6 +111,8 @@ function RoomDetail(props) {
                   bookingForm={bookingForm}
                   startDate={startDate}
                   endDate={endDate}
+                  bookingid={bookingid}
+                  setBookingID={setBookingID}
                   onPaymentBookingFormChange={onPaymentBookingFormChange}
                   onBookingFormChange={onBookingFormChange}
                 />

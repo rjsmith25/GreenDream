@@ -452,6 +452,10 @@ li.detail-tab-active {
   display: block;
 }
 
+.booking-payment-form .notice {
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 1060px) {
   .booking-form-fillout .input-group-3 {
     flex-wrap: wrap;
