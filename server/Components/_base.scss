@@ -57,10 +57,24 @@ textarea {
   margin: 0 auto;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.responsive-img {
+  width: 100%;
+  height: auto;
+}
+
 .flex {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .grid {
   display: grid;
+}
+
+.fa-star-green {
+  color: #1caf4d;
 }

@@ -1,0 +1,33 @@
+.newsletter {
+  background-color: #1caf4d;
+  height: 216px;
+}
+
+.newsletter p {
+  font-size: 18px;
+  color: #fff;
+}
+
+.newsletter p:nth-child(2) {
+  font-family: "Pacifico", sans-serif;
+}
+
+.newsletter .container {
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+.newsletter .subscribe {
+  color: #fff;
+  background-color: #189943;
+  border: 0;
+  width: 424px;
+  font-size: 16px;
+  padding: 15px 10px;
+}
+
+.newsletter .subscribe::placeholder {
+  color: #fff;
+  opacity: 1;
+}

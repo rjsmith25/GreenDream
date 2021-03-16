@@ -1,7 +1,8 @@
 import express from "express";
 import path from "path";
-
+import compression from "compression";
 import server from "./server";
+import api from "./api";
 
 // express app
 const app = express();
@@ -19,18 +20,28 @@ app.set("view engine", "pug");
 // serve static files
 app.use(express.static("./public"));
 
+// reduce the size of the response body for performance
+app.use(compression());
+
 // Parse incoming post request
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // setup server routing
 app.use("/", server);
+app.use("/api", api);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   var err = new Error("Not Found");
   err.status = 404;
   next(err);
+});
+
+// handle 404 if page does not exist
+app.use((err, req, res, next) => {
+  res.status(err.status || 404);
+  res.render("Components/error.pug");
 });
 
 // log general uncaught promise errors

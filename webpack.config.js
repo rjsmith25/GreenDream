@@ -9,6 +9,48 @@ if (process.env.NODE_ENV === "production") {
   mode = "development";
 }
 
+const clientConfig = {
+  target: "web",
+  devtool: "cheap-source-map",
+  mode: mode,
+  entry: {
+    home: "./client/home",
+    rooms: "./client/rooms",
+    "room-detail": "./client/room-detail",
+  },
+  output: {
+    path: path.join(__dirname, "public/js"),
+    filename: "[name].bundle.js",
+    publicPath: "./public",
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".json"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        options: {
+          presets: [
+            [
+              "@babel/preset-env",
+              {
+                targets: {
+                  browsers: ["last 2 versions, not < 1%"],
+                },
+              },
+            ],
+            "@babel/preset-react",
+          ],
+          plugins: ["@babel/plugin-proposal-class-properties"],
+        },
+      },
+    ],
+  },
+};
+
 const serverConfig = {
   target: "node",
   node: {
@@ -50,4 +92,4 @@ const serverConfig = {
   },
 };
 
-module.exports = [serverConfig];
+module.exports = [clientConfig, serverConfig];

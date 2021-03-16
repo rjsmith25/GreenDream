@@ -1,0 +1,15 @@
+//- RoomDetail
+extends ../Components/layout
+include ../Components/mixin/general-header
+
+block content
+  <div id="modal"></div>
+  +generalHeader(roomtype)
+  <section class="room-detail">!{content}</section>
+block scripts
+  script(id='page-ssr').
+    window.__data__ = !{JSON.stringify(roomData).replace(/<\//g, "<\\/")}
+  script(src='https://js.stripe.com/v2/', type='text/javascript')
+  script(src='/js/room-detail.bundle.js')
+  
+  

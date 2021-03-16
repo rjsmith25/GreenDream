@@ -1,0 +1,352 @@
+.rooms {
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.rooms-h {
+  margin-top: -80px;
+  z-index: 100;
+  width: 820px;
+  justify-content: center;
+  margin-bottom: 20px;
+  border: 2px solid #f2f2f2;
+}
+
+.rooms-h .rooms-search-button {
+  font-size: 16px;
+  cursor: pointer;
+  width: 222px;
+  height: 39px;
+  align-self: flex-end;
+  color: #fff;
+  border: 0;
+  width: 138px;
+  background-color: #1caf4d;
+}
+
+.rooms-search {
+  display: flex;
+  justify-content: center;
+}
+
+.rooms .sortby {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.recommended-dropdown {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 49px;
+  list-style: none;
+  z-index: 999;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #f2f2f2;
+}
+
+.reveal-dropdown {
+  display: block;
+}
+
+.recommended-dropdown li {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.recommended-dropdown li:last-child {
+  margin-bottom: 0;
+}
+
+.rooms .sortby .options {
+  display: flex;
+}
+
+.rooms .sortby .options .recommended {
+  margin-right: 30px;
+}
+
+.rooms .sortby .options .recommended .fa-caret-down {
+  margin-left: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.rooms .sortby .options .display .fa-th-large {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.rooms .sortby .options .display .fa-bars {
+  cursor: pointer;
+}
+
+.room {
+  position: relative;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.room .fa-heart {
+  cursor: pointer;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+}
+
+.rooms .rooms-main-content {
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 20px;
+}
+
+.rooms .room {
+  background-color: #fff;
+  display: flex;
+  padding: 30px;
+}
+
+.rooms .room-type {
+  display: flex;
+  flex-direction: column;
+}
+
+.rooms .room-type {
+  display: flex;
+  flex-direction: column;
+}
+
+.rooms .room-type p {
+  font-weight: 700;
+}
+
+.rooms .room-type label {
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+.rooms .room-type label input {
+  cursor: pointer;
+}
+
+.rooms .room .room-pic {
+  width: 247px;
+  height: 159px;
+  margin-right: 20px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.rooms .room .ratings {
+  margin-bottom: 10px;
+}
+
+.rooms .room .review-count {
+  margin-left: 5px;
+}
+
+.rooms .room .room-pricing {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px;
+  border-left: 1px dashed #d7dce5;
+  margin-left: auto;
+}
+
+.rooms .room .room-pricing button {
+  margin-top: auto;
+  margin-bottom: 10px;
+  font-size: 16px;
+  width: 136px;
+  padding: 10px;
+  cursor: pointer;
+  border: 0;
+  background-color: #ff7733;
+  color: #fff;
+}
+
+.rooms .room .room-pricing .price-font {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.rooms .room .room-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.rooms .room .room-info .bed {
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.rooms .room .room-info .bed span {
+  font-weight: bold;
+}
+
+.rooms .room .room-info h2 {
+  margin-bottom: 5px;
+  font-family: "Raleway", sans-serif;
+}
+
+.rooms-pagination {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+}
+
+.rooms-pagination li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.rooms-pagination li:last-child {
+  margin-right: 0;
+}
+
+.rooms-pagination li a {
+  color: #1caf4d;
+}
+
+.rooms-pagination li a:focus {
+  outline: none;
+}
+
+.rooms-pagination .next,
+.rooms-pagination .previous {
+  padding: 10px;
+  border: 1px solid #d7dce5;
+}
+
+.rooms-pagination .next {
+  background-color: #d7dce5;
+}
+
+.rooms-pagination .next a {
+  color: #303338;
+}
+
+.rooms-pagination .previous a {
+  color: #8f939d;
+}
+
+.rooms-pagination .active a {
+  color: #fff;
+  background-color: #1eaf4e;
+  border-radius: 50%;
+  padding: 5px 12px;
+}
+
+.rooms .grid-view {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  margin-bottom: 20px;
+}
+
+.rooms .grid-view .room-card {
+  cursor: pointer;
+  position: relative;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
+}
+
+.rooms .grid-view .room-card .fa-heart {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.rooms .grid-view .room-card .room-card-info h2 {
+  font-size: 20px;
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 3px;
+}
+
+.rooms .grid-view .room-card .room-card-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.rooms .grid-view .room-card .room-card-info .ratings-reviews {
+  font-size: 14px;
+}
+
+.rooms .grid-view .room-card .room-card-info .pricing > *:first-child {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.rooms .grid-view .room-card .room-card-info .pricing > *:nth-child(2) {
+  margin-left: 10px;
+}
+
+.rooms .grid-view .room-card .room-card-info .ratings-reviews .fa-star-half-alt,
+.fa-star-half-alt,
+.rooms .grid-view .room-card .room-card-info .ratings-reviews .fa-star {
+  color: #1caf4d;
+}
+
+.rooms .grid-view .room-card-pic {
+  width: 250px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.rooms .grid-view .room-card-pic img {
+  height: 200px;
+}
+
+.guest-dropdown {
+  display: none;
+  position: absolute;
+  top: 67px;
+  z-index: 999;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #f2f2f2;
+  list-style: none;
+  width: 170px;
+}
+
+.guest-dropdown li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.guest-dropdown-reveal {
+  display: block;
+}
+
+.guest-dropdown .fa-minus-circle {
+  margin-right: 5px;
+}
+
+.guest-dropdown .fa-plus-circle:hover,
+.guest-dropdown .fa-minus-circle:hover {
+  color: #f47231;
+}
+
+.guest-dropdown .fa-plus-circle {
+  margin-left: 5px;
+}
+
+.guest-dropdown .fa-minus-circle,
+.guest-dropdown .fa-plus-circle {
+  color: #b6bbc6;
+  cursor: pointer;
+}
+
+.total-night-price {
+  text-align: center;
+}

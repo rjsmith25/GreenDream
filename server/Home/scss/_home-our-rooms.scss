@@ -1,0 +1,84 @@
+// our room section
+.our-rooms .container {
+  color: #fff;
+  padding-bottom: 20px;
+}
+
+.our-rooms h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.our-rooms .grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 278px 278px;
+  grid-gap: 20px;
+}
+
+.our-rooms .deluxe-room {
+  display: flex;
+  background: url("../img/deluxe-room.jpg") no-repeat center center;
+  background-size: cover;
+  grid-column: 1/3;
+  grid-row: 1/3;
+}
+
+.our-rooms .single-room {
+  display: flex;
+  background: url("../img/single-room.jpg") no-repeat center center;
+  background-size: cover;
+  grid-column: 3/4;
+  grid-row: 1/2;
+}
+
+.our-rooms .double-room {
+  display: flex;
+  background: url("../img/double-room-2.jpg") no-repeat center center;
+  background-size: cover;
+  grid-column: 4/5;
+  grid-row: 1/2;
+}
+
+.our-rooms .family-room {
+  display: flex;
+  background: url("../img/family-room.jpg") no-repeat center center;
+  background-size: cover;
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+
+.our-rooms .see-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../img/see-more.jpg") no-repeat center center;
+  background-size: cover;
+  grid-column: 4/5;
+  grid-row: 2/3;
+}
+
+.our-rooms .family-room .content,
+.our-rooms .double-room .content,
+.our-rooms .single-room .content,
+.our-rooms .deluxe-room .content {
+  margin: auto 0 10px 10px;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.our-rooms .see-more .content p,
+.our-rooms .family-room .content p,
+.our-rooms .double-room .content p,
+.our-rooms .single-room .content p,
+.our-rooms .deluxe-room .content p {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.our-rooms .see-more .content h3,
+.our-rooms .family-room .content h3,
+.our-rooms .double-room .content h3,
+.our-rooms .single-room .content h3,
+.our-rooms .deluxe-room .content h3 {
+  font-size: 24px;
+}
