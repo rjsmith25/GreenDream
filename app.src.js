@@ -3,6 +3,7 @@ import path from "path";
 import compression from "compression";
 import server from "./server";
 import api from "./api";
+import("./cron");
 
 // express app
 const app = express();
