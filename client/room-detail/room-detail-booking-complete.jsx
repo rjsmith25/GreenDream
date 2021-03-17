@@ -15,7 +15,7 @@ function RoomDetailBookingComplete({ bookingForm, bookingid }) {
           <h2 className="traveler-title">Traveler information</h2>
           <div className="content">
             <div className="info info-variant-1 flex">
-              <p>Booking number:</p>
+              <p>Booking id:</p>
               <p>{bookingid}</p>
             </div>
             <div className="info flex">

@@ -2435,7 +2435,7 @@ function RoomDetailBookingComplete({
     className: "content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "info info-variant-1 flex"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Booking number:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, bookingid)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Booking id:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, bookingid)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "info flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "First name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, bookingForm["first_name"])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "info info-variant-1 flex"
@@ -2472,6 +2472,7 @@ function RoomDetailBookingContent({
   steps,
   setSteps,
   room,
+  setRoom,
   paymentForm,
   bookingForm,
   onPaymentBookingFormChange,
@@ -2495,6 +2496,7 @@ function RoomDetailBookingContent({
         endDate: endDate,
         setBookingID: setBookingID,
         room: room,
+        setRoom: setRoom,
         paymentForm: paymentForm,
         bookingForm: bookingForm,
         setSteps: setSteps,
@@ -2924,6 +2926,7 @@ function RoomDetailPaymentForm({
   bookingForm,
   paymentForm,
   room,
+  setRoom,
   setBookingID,
   startDate,
   endDate,
@@ -2970,19 +2973,24 @@ function RoomDetailPaymentForm({
         end_date: (0,_component__WEBPACK_IMPORTED_MODULE_3__.formatDate)(endDate)
       });
       let paymentRes = await axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/payments", {
+        room_id: room.id,
         booking_id: bookingRes.data.id,
         price: (0,_component__WEBPACK_IMPORTED_MODULE_3__.calculateTotal)(+room.price, (0,_component__WEBPACK_IMPORTED_MODULE_3__.getDaysBetween)(startDate, endDate)),
         token: stripeToken.id
       });
-      setBookingID(bookingRes.data.booking_id); // console.log(paymentRes.data);
-      // console.log(customerRes.data);
-      // console.log(bookingRes.data);
-
+      setBookingID(bookingRes.data.booking_id);
+      setRoom({ ...room,
+        status: "Booked"
+      });
+      console.log(paymentRes.data);
+      console.log(customerRes.data);
+      console.log(bookingRes.data);
       setProcessing(false);
       setSteps(3);
     } catch (e) {
       setProcessing(false);
       setDisablePayment(false);
+      console.log(e);
 
       if (e.response) {
         console.log(e.response.data);
@@ -3620,6 +3628,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function RoomDetail(props) {
+  const [room, setRoom] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.room || {});
   const [selectedTab, setSelectedTab] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("Description");
   const [steps, setSteps] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
   const [showDetailModal, setShowDetailModal] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -3712,19 +3721,21 @@ function RoomDetail(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "steps-names flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Your booking details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Your payment details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Booking Completed!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_room_detail_booking_content__WEBPACK_IMPORTED_MODULE_5__.default, {
-    room: props.room,
+    room: room,
     steps: steps,
     setSteps: setSteps,
     paymentForm: paymentForm,
     bookingForm: bookingForm,
     startDate: startDate,
     endDate: endDate,
+    room: room,
+    setRoom: setRoom,
     bookingid: bookingid,
     setBookingID: setBookingID,
     onPaymentBookingFormChange: onPaymentBookingFormChange,
     onBookingFormChange: onBookingFormChange
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_room_detail_booking_info__WEBPACK_IMPORTED_MODULE_7__.default, {
-    room: props.room,
+    room: room,
     adults: adults,
     children: children,
     startDate: startDate,
@@ -3740,7 +3751,7 @@ function RoomDetail(props) {
     className: "content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_room_detail_content__WEBPACK_IMPORTED_MODULE_3__.default, {
     selectedTab: selectedTab,
-    room: props.room
+    room: room
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_room_detail_sidebar__WEBPACK_IMPORTED_MODULE_1__.default, {
     adults: adults,
     setAdults: setAdults,

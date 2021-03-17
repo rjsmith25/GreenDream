@@ -7,6 +7,7 @@ function RoomDetailBookingContent({
   steps,
   setSteps,
   room,
+  setRoom,
   paymentForm,
   bookingForm,
   onPaymentBookingFormChange,
@@ -32,6 +33,7 @@ function RoomDetailBookingContent({
           endDate={endDate}
           setBookingID={setBookingID}
           room={room}
+          setRoom={setRoom}
           paymentForm={paymentForm}
           bookingForm={bookingForm}
           setSteps={setSteps}

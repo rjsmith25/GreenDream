@@ -1,13 +1,14 @@
 require("dotenv").config();
-const { insert } = require("./payment.model");
+const Payment = require("./payment.model");
+const Rooms = require("../room/room.model");
 const StripePrivateKey = process.env.stripeTestPrivateKey;
 const stripe = require("stripe")(StripePrivateKey);
 
 async function createPayment(req, res) {
-  const { token, price, booking_id } = req.body;
-  if (!token || !price || !booking_id) {
+  const { token, price, booking_id, room_id } = req.body;
+  if (!token || !price || !booking_id || !room_id) {
     return res.status(400).json({
-      message: "token, price and booking id is required",
+      message: "token, price booking id, and room id is required",
     });
   }
   try {
@@ -18,11 +19,14 @@ async function createPayment(req, res) {
       description: "GreenDream hotel rental",
     });
 
-    await insert({
+    await Payment.insert({
       booking_id,
       price: price.toString(),
       payment_id: charge.id,
     });
+
+    await Rooms.update(room_id, { status: "Booked" });
+
     res.status(200).json({ message: "successfully" });
   } catch (e) {
     console.log(e);

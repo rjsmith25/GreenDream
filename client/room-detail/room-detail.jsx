@@ -8,6 +8,7 @@ import RoomDetailSteps from "./room-detail-steps";
 import RoomDetailBookingInfo from "./room-detail-booking-info";
 
 function RoomDetail(props) {
+  const [room, setRoom] = useState(props.room || {});
   const [selectedTab, setSelectedTab] = useState("Description");
   const [steps, setSteps] = useState(1);
   const [showDetailModal, setShowDetailModal] = useState(false);
@@ -104,13 +105,15 @@ function RoomDetail(props) {
                   <p>Booking Completed!</p>
                 </div>
                 <RoomDetailBookingContent
-                  room={props.room}
+                  room={room}
                   steps={steps}
                   setSteps={setSteps}
                   paymentForm={paymentForm}
                   bookingForm={bookingForm}
                   startDate={startDate}
                   endDate={endDate}
+                  room={room}
+                  setRoom={setRoom}
                   bookingid={bookingid}
                   setBookingID={setBookingID}
                   onPaymentBookingFormChange={onPaymentBookingFormChange}
@@ -118,7 +121,7 @@ function RoomDetail(props) {
                 />
               </div>
               <RoomDetailBookingInfo
-                room={props.room}
+                room={room}
                 adults={adults}
                 children={children}
                 startDate={startDate}
@@ -135,7 +138,7 @@ function RoomDetail(props) {
             setSelectedTab={setSelectedTab}
           />
           <div className="content">
-            <RoomDetailContent selectedTab={selectedTab} room={props.room} />
+            <RoomDetailContent selectedTab={selectedTab} room={room} />
           </div>
         </div>
         <RoomDetailSidebar
