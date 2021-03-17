@@ -8,10 +8,15 @@
     "devserver": "nodemon app.js",
     "sass": "sass --watch server:public/css",
     "build": "webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "start": "node app.js"
   },
   "author": "Russell Smith",
   "license": "MIT",
+  "engines": {
+    "node": ">=14.16.0",
+    "yarn": ">=1.19.1"
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "compression": "^1.7.4",
