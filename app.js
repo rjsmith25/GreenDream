@@ -579,7 +579,7 @@ eval("const knex = __webpack_require__(/*! knex */ \"knex\");\n\nconst config = 
   \*********************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("// Update with your config settings.\n__webpack_require__(/*! dotenv */ \"dotenv\").config();\n\nconst pgConnection =  true ? process.env.DEV_DATABASE_URL : 0;\nmodule.exports = {\n  development: {\n    client: \"pg\",\n    connection: pgConnection,\n    pool: {\n      min: 2,\n      max: 10\n    },\n    migrations: {\n      directory: \"./data/migrations\"\n    },\n    seeds: {\n      directory: \"./data/seeds\"\n    }\n  }\n};\n\n//# sourceURL=webpack://hotelx/./knexfile.js?");
+eval("// Update with your config settings.\n__webpack_require__(/*! dotenv */ \"dotenv\").config();\n\nconst pgConnection =  true ? process.env.DEV_DATABASE_URL : 0;\nmodule.exports = {\n  development: {\n    client: \"pg\",\n    connection: pgConnection,\n    pool: {\n      min: 2,\n      max: 10\n    },\n    migrations: {\n      directory: \"./data/migrations\"\n    },\n    seeds: {\n      directory: \"./data/seeds\"\n    }\n  },\n  production: {\n    client: \"pg\",\n    connection: pgConnection,\n    pool: {\n      min: 2,\n      max: 10\n    },\n    migrations: {\n      directory: \"./data/migrations\"\n    },\n    seeds: {\n      directory: \"./data/seeds\"\n    }\n  }\n};\n\n//# sourceURL=webpack://hotelx/./knexfile.js?");
 
 /***/ }),
 
