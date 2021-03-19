@@ -82,3 +82,63 @@
 .our-rooms .deluxe-room .content h3 {
   font-size: 24px;
 }
+
+@media screen and (max-width: 900px) {
+  .our-rooms .single-room {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .our-rooms .double-room {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  .our-rooms .family-room {
+    grid-column: 3/4;
+    grid-row: 1/2;
+  }
+
+  .our-rooms .see-more {
+    grid-column: 4/5;
+    grid-row: 1/2;
+  }
+
+  .our-rooms .deluxe-room {
+    grid-column: 1/5;
+    grid-row: 2/3;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .our-rooms .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 278px 278px 278px 278px 278px;
+    grid-gap: 20px;
+  }
+
+  .our-rooms .single-room {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .our-rooms .double-room {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+
+  .our-rooms .family-room {
+    grid-column: 1/2;
+    grid-row: 3/4;
+  }
+
+  .our-rooms .deluxe-room {
+    grid-column: 1/2;
+    grid-row: 4/5;
+  }
+
+  .our-rooms .see-more {
+    grid-column: 1/2;
+    grid-row: 5/6;
+  }
+}

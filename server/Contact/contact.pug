@@ -1,7 +1,10 @@
 //- Contact Page
 extends ../Components/layout
-include ../Components/mixin/general-header
 
 block content
-  +generalHeader("Contact")
-  include ./includes/contact-us 
+  <header class="general-header">!{GeneralHeaderContent}</header>
+  include ./includes/contact-us
+block scripts
+  script(id='page-ssr').
+    window.__data__ = !{JSON.stringify(contactData).replace(/<\//g, "<\\/")}
+  script(src='/js/contact.bundle.js')

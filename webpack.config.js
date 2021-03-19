@@ -17,6 +17,8 @@ const clientConfig = {
     home: "./client/home",
     rooms: "./client/rooms",
     "room-detail": "./client/room-detail",
+    about: "./client/about",
+    contact: "./client/contact",
   },
   output: {
     path: path.join(__dirname, "public/js"),

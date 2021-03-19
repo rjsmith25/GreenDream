@@ -10,6 +10,7 @@
   border-radius: 10px;
   font-weight: bold;
   padding-left: 5px;
+  margin-bottom: 10px;
 }
 
 .about-team .team-mate .name {
@@ -26,6 +27,10 @@
 
 .about-team .team-mate .content {
   margin-top: auto;
+}
+
+.about-team .container {
+  flex-wrap: nowrap;
 }
 
 .about-team .container > *:first-child {
@@ -46,4 +51,38 @@
 .about-team .container > *:nth-child(4) {
   background: url("../img/man-2.jpg") no-repeat center center;
   background-size: cover;
+}
+
+@media screen and (max-width: 780px) {
+  .about-team .container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .about-team .team-mate {
+    flex-basis: 47%;
+    margin: 0 0 10px 0;
+  }
+
+  .about-team .container > *:first-child {
+    margin-right: 10px;
+  }
+
+  .about-team .container > *:nth-child(3) {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .about-team .team-mate {
+    flex-basis: 100%;
+    margin: 0 0 10px 0;
+  }
+  .about-team .container > *:first-child {
+    margin-right: 0;
+  }
+
+  .about-team .container > *:nth-child(3) {
+    margin-right: 0;
+  }
 }

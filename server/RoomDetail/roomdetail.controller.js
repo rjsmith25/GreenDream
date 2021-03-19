@@ -1,22 +1,27 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
 import RoomDetailComponent from "../../client/room-detail/room-detail";
+import GeneralHeaderComponent from "../../client/component/general-header";
 import { rooms } from "../../service";
 
 async function RoomDetail(req, res, next) {
   const { id } = req.params;
-  let { start_date, end_date, adults, children } = req.query;
-  let room = await rooms.getRoom(id);
-  let roomtype = room.roomtype;
+  const { start_date, end_date, adults, children } = req.query;
+  const room = await rooms.getRoom(id);
+  const title = room.roomtype;
   let roomData = {
     room: room,
     startDate: start_date,
     endDate: end_date,
     adults: adults,
     children: children,
+    title: title,
   };
   try {
-    const content = renderToString(
+    const GeneralHeaderContent = renderToString(
+      <GeneralHeaderComponent title={title} />
+    );
+    const RoomDetailContent = renderToString(
       <RoomDetailComponent
         room={room}
         startDate={start_date}
@@ -25,7 +30,11 @@ async function RoomDetail(req, res, next) {
         children={children}
       />
     );
-    res.render("RoomDetail/roomdetail.pug", { content, roomtype, roomData });
+    res.render("RoomDetail/roomdetail.pug", {
+      GeneralHeaderContent,
+      RoomDetailContent,
+      roomData,
+    });
   } catch (e) {
     console.log(e);
     next(e);

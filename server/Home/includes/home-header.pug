@@ -1,20 +1,7 @@
 //- Homepage header 
 header.home-header
     .container
-        .header-top.flex
-          .brand-name
-            a(href='/')
-              h1 GreenDream       
-          nav
-            ul.nav-list.flex
-              li
-                a(href='/') Home            
-              li
-                a(href='/about') About Us            
-              li
-                a(href='/rooms') Rooms           
-              li
-                a(href='/contact') Contact     
+        <div class="header-top flex">!{HomeHeaderContent}</div> 
         .header-lower.flex
           h1.header-headline Book your best room 
-          <form class="hotel-search flex">!{content}</form>
+          <form class="hotel-search flex">!{HomeSearchContent}</form>

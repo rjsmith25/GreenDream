@@ -26,6 +26,7 @@ function RoomDetailPaymentForm({
   bookingForm,
   paymentForm,
   room,
+  setRoom,
   setBookingID,
   startDate,
   endDate,
@@ -74,21 +75,24 @@ function RoomDetailPaymentForm({
       });
 
       let paymentRes = await axios.post("/api/payments", {
+        room_id: room.id,
         booking_id: bookingRes.data.id,
         price: calculateTotal(+room.price, getDaysBetween(startDate, endDate)),
         token: stripeToken.id,
       });
 
       setBookingID(bookingRes.data.booking_id);
+      setRoom({ ...room, status: "Booked" });
 
-      // console.log(paymentRes.data);
-      // console.log(customerRes.data);
-      // console.log(bookingRes.data);
+      console.log(paymentRes.data);
+      console.log(customerRes.data);
+      console.log(bookingRes.data);
       setProcessing(false);
       setSteps(3);
     } catch (e) {
       setProcessing(false);
       setDisablePayment(false);
+      console.log(e);
       if (e.response) {
         console.log(e.response.data);
         console.log(e.response.status);

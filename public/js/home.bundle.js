@@ -474,6 +474,90 @@ function FullDateFormat(date_object) {
 
 /***/ }),
 
+/***/ "./client/component/general-header.jsx":
+/*!*********************************************!*\
+  !*** ./client/component/general-header.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+function GeneralHeader({
+  title
+}) {
+  const [dropDown, setDropDown] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [windowSize, setWindowSize] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+
+  function onNavDropDownClick() {
+    setDropDown(!dropDown);
+  }
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    setWindowSize(window.innerWidth);
+
+    if (window.innerWidth <= 600) {
+      setDropDown(false);
+    }
+
+    if (window.innerWidth > 600) {
+      setDropDown(true);
+    }
+
+    function windowResize() {
+      if (window.innerWidth > 600) {
+        setDropDown(true);
+      }
+
+      if (window.innerWidth <= 600) {
+        setDropDown(false);
+      }
+
+      setWindowSize(window.innerWidth);
+    }
+
+    window.addEventListener("resize", windowResize);
+    return () => {
+      window.removeEventListener("resize", windowResize);
+    };
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "header-top flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "brand-name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "/"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "GreenDream "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
+    className: dropDown ? "open-nav" : "close-nav"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+    className: "nav-list flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "/"
+  }, "Home ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "/about"
+  }, "About Us ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "/rooms"
+  }, "Rooms ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "/contact"
+  }, "Contact")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+    onClick: onNavDropDownClick,
+    className: "fas fa-bars fa-2x"
+  })), windowSize <= 600 && dropDown ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "header-lower-2 flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, title)));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GeneralHeader);
+
+/***/ }),
+
 /***/ "./client/component/getDaysBetween.js":
 /*!********************************************!*\
   !*** ./client/component/getDaysBetween.js ***!
@@ -508,13 +592,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getDaysBetween": () => (/* reexport safe */ _getDaysBetween__WEBPACK_IMPORTED_MODULE_1__.default),
 /* harmony export */   "formatDate": () => (/* reexport safe */ _formatDate__WEBPACK_IMPORTED_MODULE_2__.default),
 /* harmony export */   "calculateTotal": () => (/* reexport safe */ _calculateTotal__WEBPACK_IMPORTED_MODULE_4__.default),
-/* harmony export */   "FullDateFormat": () => (/* reexport safe */ _fullDateFormat__WEBPACK_IMPORTED_MODULE_3__.default)
+/* harmony export */   "FullDateFormat": () => (/* reexport safe */ _fullDateFormat__WEBPACK_IMPORTED_MODULE_3__.default),
+/* harmony export */   "GeneralHeader": () => (/* reexport safe */ _general_header__WEBPACK_IMPORTED_MODULE_5__.default)
 /* harmony export */ });
 /* harmony import */ var _useDropDownClickAway__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useDropDownClickAway */ "./client/component/useDropDownClickAway.jsx");
 /* harmony import */ var _getDaysBetween__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getDaysBetween */ "./client/component/getDaysBetween.js");
 /* harmony import */ var _formatDate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./formatDate */ "./client/component/formatDate.js");
 /* harmony import */ var _fullDateFormat__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fullDateFormat */ "./client/component/fullDateFormat.js");
 /* harmony import */ var _calculateTotal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./calculateTotal */ "./client/component/calculateTotal.js");
+/* harmony import */ var _general_header__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./general-header */ "./client/component/general-header.jsx");
+
 
 
 
@@ -568,6 +655,73 @@ function useDropDownClickAway(setGuestDropDown) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useDropDownClickAway);
+
+/***/ }),
+
+/***/ "./client/home/home-header.jsx":
+/*!*************************************!*\
+  !*** ./client/home/home-header.jsx ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+function HomeHeader() {
+  const [dropDown, setDropDown] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+
+  function onNavDropDownClick() {
+    setDropDown(!dropDown);
+  }
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (window.innerWidth <= 600) {
+      setDropDown(false);
+    }
+
+    function windowResize() {
+      if (window.innerWidth > 600) {
+        setDropDown(true);
+      }
+
+      if (window.innerWidth <= 600) {
+        setDropDown(false);
+      }
+    }
+
+    window.addEventListener("resize", windowResize);
+    return () => {
+      window.removeEventListener("resize", windowResize);
+    };
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "brand-name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "/"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "GreenDream "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
+    className: dropDown ? "open-nav" : "close-nav"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+    className: "nav-list flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "/"
+  }, "Home ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "/about"
+  }, "About Us ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "/rooms"
+  }, "Rooms ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "/contact"
+  }, "Contact")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+    onClick: onNavDropDownClick,
+    className: "fas fa-bars fa-2x"
+  }));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HomeHeader);
 
 /***/ }),
 
@@ -45908,9 +46062,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _home_search__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home-search */ "./client/home/home-search.jsx");
+/* harmony import */ var _home_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home-header */ "./client/home/home-header.jsx");
 
 
 
+
+(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.hydrate)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_3__.default, null), document.querySelector(".header-top"));
 (0,react_dom__WEBPACK_IMPORTED_MODULE_1__.hydrate)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_search__WEBPACK_IMPORTED_MODULE_2__.default, null), document.querySelector(".hotel-search"));
 })();
 

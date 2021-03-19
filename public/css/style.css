@@ -117,6 +117,10 @@ textarea {
   overflow: visible;
 }
 
+.general-header .brand-name h1 {
+  color: #2ec84f;
+}
+
 .header-lower-2 {
   color: #fff;
   justify-content: center;
@@ -128,6 +132,38 @@ textarea {
   font-size: 45px;
 }
 
+.general-header .header-top {
+  position: relative;
+}
+
+.general-header .header-top .fa-bars {
+  display: none;
+  position: absolute;
+  top: 12px;
+  right: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .general-header .header-top {
+    flex-direction: column;
+  }
+
+  .general-header .nav-list {
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+  }
+
+  .general-header .nav-list li {
+    margin-bottom: 20px;
+  }
+
+  .general-header .header-top .fa-bars {
+    display: block;
+  }
+}
 .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle,
 .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle,
 .react-datepicker__year-read-view--down-arrow,
@@ -1088,11 +1124,8 @@ header nav {
 }
 
 .home-header .brand-name h1 {
+  display: inline;
   color: #fff;
-}
-
-.general-header .brand-name h1 {
-  color: #2ec84f;
 }
 
 .brand-name a {
@@ -1128,10 +1161,16 @@ header nav {
 }
 
 .hotel-search {
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
   padding: 30px;
   background-color: #f8f8f8;
   border-radius: 10px;
+}
+
+.hotel-search > * {
+  margin-bottom: 10px;
 }
 
 .hotel-search .input-group {
@@ -1178,6 +1217,67 @@ header nav {
   cursor: pointer;
 }
 
+.home-header .header-top {
+  position: relative;
+}
+
+.home-header .header-top .fa-bars {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.open-nav {
+  display: block;
+}
+
+.close-nav {
+  display: none;
+}
+
+@media screen and (max-width: 861px) {
+  .hotel-search .home-search {
+    width: 175px;
+  }
+}
+@media screen and (max-width: 639px) {
+  .hotel-search .guest-field-group {
+    margin-right: 9px;
+  }
+
+  .hotel-search .home-search {
+    width: 160px;
+    margin-right: 7px;
+  }
+}
+@media screen and (max-width: 602px) {
+  .header-headline {
+    font-size: 46px;
+    color: #fff;
+  }
+}
+@media screen and (max-width: 600px) {
+  .home-header .header-top {
+    flex-direction: column;
+  }
+
+  .home-header .nav-list {
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+  }
+
+  .home-header .nav-list li {
+    margin-bottom: 20px;
+  }
+
+  .home-header .header-top .fa-bars {
+    display: block;
+  }
+}
 .the-best h2 {
   font-size: 32px;
   margin-bottom: 20px;
@@ -1187,9 +1287,14 @@ header nav {
   padding: 100px 0;
 }
 
+.the-best-info-container {
+  flex-wrap: nowrap;
+}
+
 .the-best-info {
   flex-basis: 32.7%;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .the-best-info:last-child {
@@ -1200,6 +1305,15 @@ header nav {
   margin: 10px 0;
 }
 
+@media screen and (max-width: 602px) {
+  .the-best-info-container {
+    flex-wrap: wrap;
+  }
+
+  .the-best-info {
+    flex-basis: 100%;
+  }
+}
 .our-rooms .container {
   color: #fff;
   padding-bottom: 20px;
@@ -1284,6 +1398,64 @@ header nav {
   font-size: 24px;
 }
 
+@media screen and (max-width: 900px) {
+  .our-rooms .single-room {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .our-rooms .double-room {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  .our-rooms .family-room {
+    grid-column: 3/4;
+    grid-row: 1/2;
+  }
+
+  .our-rooms .see-more {
+    grid-column: 4/5;
+    grid-row: 1/2;
+  }
+
+  .our-rooms .deluxe-room {
+    grid-column: 1/5;
+    grid-row: 2/3;
+  }
+}
+@media screen and (max-width: 699px) {
+  .our-rooms .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 278px 278px 278px 278px 278px;
+    grid-gap: 20px;
+  }
+
+  .our-rooms .single-room {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .our-rooms .double-room {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+
+  .our-rooms .family-room {
+    grid-column: 1/2;
+    grid-row: 3/4;
+  }
+
+  .our-rooms .deluxe-room {
+    grid-column: 1/2;
+    grid-row: 4/5;
+  }
+
+  .our-rooms .see-more {
+    grid-column: 1/2;
+    grid-row: 5/6;
+  }
+}
 .enjoy-vacation {
   color: #fff;
   background: url("../img/enjoy-vacation.jpg") no-repeat center center;
@@ -1396,10 +1568,10 @@ header nav {
 
 .about-info-card {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   border: 1px solid #f2f2f2;
   border-radius: 20px;
-  height: 200px;
+  min-height: 200px;
   background-color: #fff;
   padding: 0 20px;
 }
@@ -1427,6 +1599,7 @@ header nav {
   align-items: center;
   flex-basis: 23.5%;
   margin-right: 20px;
+  margin-bottom: 10px;
 }
 
 .about-info-card .content:last-child {
@@ -1482,6 +1655,62 @@ header nav {
   margin: 10px 0;
 }
 
+@media screen and (max-width: 780px) {
+  .offering {
+    grid-template-columns: 1fr;
+    grid-template-rows: 296px 296px 296px 296px 296px;
+    grid-gap: 10px;
+  }
+
+  .modern-room-pic {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .modern-rooms {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+
+  .hotel-facilities-pic {
+    grid-column: 1/2;
+    grid-row: 3/4;
+  }
+
+  .hotel-facilities {
+    grid-column: 1/2;
+    grid-row: 4/5;
+  }
+
+  .excelent-services-pic {
+    grid-column: 1/2;
+    grid-row: 5/6;
+  }
+
+  .excelent-services {
+    grid-column: 1/2;
+    grid-row: 6/7;
+  }
+}
+@media screen and (max-width: 696px) {
+  .about-info-card {
+    flex-flow: row wrap;
+  }
+
+  .about-info-card .content {
+    flex-basis: 46%;
+  }
+}
+@media screen and (max-width: 581px) {
+  .about-info-card .content {
+    flex-basis: 45%;
+  }
+}
+@media screen and (max-width: 581px) {
+  .about-info-card .content {
+    flex-basis: 100%;
+  }
+}
 .about-team {
   padding-bottom: 20px;
 }
@@ -1494,6 +1723,7 @@ header nav {
   border-radius: 10px;
   font-weight: bold;
   padding-left: 5px;
+  margin-bottom: 10px;
 }
 
 .about-team .team-mate .name {
@@ -1510,6 +1740,10 @@ header nav {
 
 .about-team .team-mate .content {
   margin-top: auto;
+}
+
+.about-team .container {
+  flex-wrap: nowrap;
 }
 
 .about-team .container > *:first-child {
@@ -1532,6 +1766,39 @@ header nav {
   background-size: cover;
 }
 
+@media screen and (max-width: 780px) {
+  .about-team .container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .about-team .team-mate {
+    flex-basis: 47%;
+    margin: 0 0 10px 0;
+  }
+
+  .about-team .container > *:first-child {
+    margin-right: 10px;
+  }
+
+  .about-team .container > *:nth-child(3) {
+    margin-right: 10px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .about-team .team-mate {
+    flex-basis: 100%;
+    margin: 0 0 10px 0;
+  }
+
+  .about-team .container > *:first-child {
+    margin-right: 0;
+  }
+
+  .about-team .container > *:nth-child(3) {
+    margin-right: 0;
+  }
+}
 .contact-us {
   padding: 100px 0;
 }
@@ -1726,11 +1993,6 @@ header nav {
   background-color: #fff;
   display: flex;
   padding: 30px;
-}
-
-.rooms .room-type {
-  display: flex;
-  flex-direction: column;
 }
 
 .rooms .room-type {
@@ -1970,6 +2232,83 @@ header nav {
   text-align: center;
 }
 
+@media screen and (max-width: 1065px) {
+  .rooms .grid-view {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .rooms .grid-view .room-card-pic {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .rooms .rooms-main-content {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+
+  .rooms .sortby {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .rooms .sortby .results {
+    margin-bottom: 10px;
+  }
+
+  .recommended-dropdown {
+    top: 50px;
+    left: 1px;
+    width: 190px;
+  }
+}
+@media screen and (max-width: 657px) {
+  .rooms .room {
+    flex-wrap: wrap;
+  }
+
+  .total-night-price {
+    margin: 5px 0;
+  }
+
+  .rooms .room .room-pricing {
+    margin-top: 10px;
+    border-left: 0;
+    padding: 0;
+  }
+}
+@media screen and (max-width: 620px) {
+  .rooms .grid-view {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (max-width: 500px) {
+  .rooms .room {
+    flex-direction: column;
+  }
+
+  .rooms .room .room-pricing {
+    margin-left: 0;
+  }
+
+  .total-night-price {
+    text-align: left;
+  }
+}
+@media screen and (max-width: 503px) {
+  .rooms-h .input-group {
+    width: 50%;
+  }
+
+  .rooms-h .guest-field-group {
+    margin-right: auto;
+  }
+
+  .rooms-h .rooms-search-button {
+    width: 170px;
+    margin-right: 7px;
+  }
+}
 .room-detail {
   background-color: #f5f5f5;
 }
@@ -2460,6 +2799,16 @@ li.detail-tab-active {
     margin-right: 0;
     margin-bottom: 10px;
     flex-basis: 100%;
+  }
+}
+@media screen and (max-width: 670px) {
+  .room-detail .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .room-detail .side-bar form {
+    width: 350px;
+    margin: 0 auto;
   }
 }
 

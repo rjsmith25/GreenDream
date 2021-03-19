@@ -1,5 +1,13 @@
 const db = require("../../data/dbConfig");
 
+function update(id, updates) {
+  return db("rooms").where({ id }).update(updates);
+}
+
+function findBy(filter) {
+  return db("rooms").where(filter);
+}
+
 async function find() {
   try {
     let [
@@ -96,4 +104,4 @@ async function findById(id) {
   }
 }
 
-module.exports = { find, findById };
+module.exports = { find, findBy, findById, update };
