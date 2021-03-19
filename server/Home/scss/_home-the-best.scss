@@ -9,9 +9,14 @@
   padding: 100px 0;
 }
 
+.the-best-info-container {
+  flex-wrap: nowrap;
+}
+
 .the-best-info {
   flex-basis: 32.7%;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .the-best-info:last-child {
@@ -20,4 +25,14 @@
 
 .the-best-info p {
   margin: 10px 0;
+}
+
+@media screen and (max-width: 602px) {
+  .the-best-info-container {
+    flex-wrap: wrap;
+  }
+
+  .the-best-info {
+    flex-basis: 100%;
+  }
 }

@@ -114,11 +114,6 @@
   flex-direction: column;
 }
 
-.rooms .room-type {
-  display: flex;
-  flex-direction: column;
-}
-
 .rooms .room-type p {
   font-weight: 700;
 }
@@ -349,4 +344,94 @@
 
 .total-night-price {
   text-align: center;
+}
+
+@media screen and (max-width: 1065px) {
+  .rooms .grid-view {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .rooms .grid-view .room-card-pic {
+    width: 100%;
+  }
+}
+//
+// @media screen and (max-width: 997px) {
+//   .room-pricing,
+//   .room-info,
+//   .room-pic {
+//     width: 100%;
+//   }
+// }
+
+@media screen and (max-width: 800px) {
+  .rooms .rooms-main-content {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+
+  .rooms .sortby {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .rooms .sortby .results {
+    margin-bottom: 10px;
+  }
+
+  .recommended-dropdown {
+    top: 50px;
+    left: 1px;
+    width: 190px;
+  }
+}
+
+@media screen and (max-width: 657px) {
+  .rooms .room {
+    flex-wrap: wrap;
+  }
+
+  .total-night-price {
+    margin: 5px 0;
+  }
+
+  .rooms .room .room-pricing {
+    margin-top: 10px;
+    border-left: 0;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .rooms .grid-view {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .rooms .room {
+    flex-direction: column;
+  }
+
+  .rooms .room .room-pricing {
+    margin-left: 0;
+  }
+
+  .total-night-price {
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 503px) {
+  .rooms-h .input-group {
+    width: 50%;
+  }
+  .rooms-h .guest-field-group {
+    margin-right: auto;
+  }
+
+  .rooms-h .rooms-search-button {
+    width: 170px;
+    margin-right: 7px;
+  }
 }

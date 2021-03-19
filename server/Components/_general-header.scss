@@ -5,6 +5,10 @@
   overflow: visible;
 }
 
+.general-header .brand-name h1 {
+  color: #2ec84f;
+}
+
 .header-lower-2 {
   color: #fff;
   justify-content: center;
@@ -14,4 +18,37 @@
 
 .header-lower-2 h2 {
   font-size: 45px;
+}
+
+.general-header .header-top {
+  position: relative;
+}
+
+.general-header .header-top .fa-bars {
+  display: none;
+  position: absolute;
+  top: 12px;
+  right: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .general-header .header-top {
+    flex-direction: column;
+  }
+
+  .general-header .nav-list {
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+  }
+
+  .general-header .nav-list li {
+    margin-bottom: 20px;
+  }
+
+  .general-header .header-top .fa-bars {
+    display: block;
+  }
 }
