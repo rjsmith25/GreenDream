@@ -22,7 +22,8 @@ module.exports = {
   },
   production: {
     client: "pg",
-    connection: pgConnection + "?sslmode=require",
+    connection: pgConnection,
+    ssl: { rejectUnauthorized: false },
     pool: {
       min: 2,
       max: 10,
