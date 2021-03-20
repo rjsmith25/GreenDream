@@ -13,11 +13,13 @@ function RoomDetail(props) {
   const [steps, setSteps] = useState(1);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [startDate, setStartDate] = useState(() => {
-    return props.startDate ? new Date(props.startDate) : new Date();
+    return props.startDate
+      ? new Date(props.startDate.replace(/-/g, "/"))
+      : new Date();
   });
   const [endDate, setEndDate] = useState(() => {
     return props.endDate
-      ? new Date(props.endDate)
+      ? new Date(props.endDate.replace(/-/g, "/"))
       : new Date(new Date().setDate(new Date().getDate() + 1));
   });
   const [bookingForm, setBookingForm] = useState({

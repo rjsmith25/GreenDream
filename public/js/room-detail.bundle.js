@@ -3720,10 +3720,10 @@ function RoomDetail(props) {
   const [steps, setSteps] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
   const [showDetailModal, setShowDetailModal] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [startDate, setStartDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => {
-    return props.startDate ? new Date(props.startDate) : new Date();
+    return props.startDate ? new Date(props.startDate.replace(/-/g, "/")) : new Date();
   });
   const [endDate, setEndDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => {
-    return props.endDate ? new Date(props.endDate) : new Date(new Date().setDate(new Date().getDate() + 1));
+    return props.endDate ? new Date(props.endDate.replace(/-/g, "/")) : new Date(new Date().setDate(new Date().getDate() + 1));
   });
   const [bookingForm, setBookingForm] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     first_name: "",

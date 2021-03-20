@@ -3098,10 +3098,10 @@ function Rooms(props) {
     "king-room": false
   });
   const [startDate, setStartDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => {
-    return props.startDate ? new Date(props.startDate) : new Date();
+    return props.startDate ? new Date(props.startDate.replace(/-/g, "/")) : new Date();
   });
   const [endDate, setEndDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => {
-    return props.endDate ? new Date(props.endDate) : new Date(new Date().setDate(new Date().getDate() + 1));
+    return props.endDate ? new Date(props.endDate.replace(/-/g, "/")) : new Date(new Date().setDate(new Date().getDate() + 1));
   });
   const [adults, setAdults] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(+props.adults || 2);
   const [children, setChildren] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(+props.children || 0);
