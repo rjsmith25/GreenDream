@@ -85,7 +85,6 @@ function HomeSearch() {
           selectsStart
           startDate={startDate}
           endDate={endDate}
-          closeOnScroll={true}
         />
       </div>
       <div className="input-group">
@@ -97,7 +96,6 @@ function HomeSearch() {
           startDate={startDate}
           endDate={endDate}
           minDate={startDate}
-          closeOnScroll={true}
         />
       </div>
       <div className="input-group guest-field-group">

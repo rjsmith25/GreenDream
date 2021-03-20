@@ -73,7 +73,6 @@ function RoomsSearch({
             selectsStart
             startDate={startDate}
             endDate={endDate}
-            closeOnScroll={true}
           />
         </div>
         <div className="input-group">
@@ -85,7 +84,6 @@ function RoomsSearch({
             startDate={startDate}
             endDate={endDate}
             minDate={startDate}
-            closeOnScroll={true}
           />
         </div>
         <div className="input-group guest-field-group">

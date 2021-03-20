@@ -2774,8 +2774,7 @@ function RoomsSearch({
     onChange: onStartDateChange,
     selectsStart: true,
     startDate: startDate,
-    endDate: endDate,
-    closeOnScroll: true
+    endDate: endDate
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "input-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
@@ -2786,8 +2785,7 @@ function RoomsSearch({
     selectsEnd: true,
     startDate: startDate,
     endDate: endDate,
-    minDate: startDate,
-    closeOnScroll: true
+    minDate: startDate
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "input-group guest-field-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
