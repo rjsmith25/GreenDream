@@ -43,7 +43,6 @@ header nav {
 }
 
 .header-lower {
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 500px;
@@ -177,5 +176,19 @@ header nav {
 
   .home-header .header-top .fa-bars {
     display: block;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header-headline {
+    font-size: 42px;
+    color: #fff;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .header-headline {
+    font-size: 36px;
+    color: #fff;
   }
 }
