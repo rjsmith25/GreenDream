@@ -2300,6 +2300,7 @@ header nav {
 @media screen and (max-width: 500px) {
   .rooms .room {
     flex-direction: column;
+    width: 300px;
   }
 
   .rooms .room .room-pricing {
@@ -2309,12 +2310,21 @@ header nav {
   .total-night-price {
     text-align: left;
   }
+
+  .rooms-pagination {
+    justify-content: flex-start;
+  }
 }
 @media screen and (max-width: 500px) {
   .rooms-h .rooms-search-button {
     align-self: unset;
     margin-right: 10px;
     width: 170px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .rooms .grid-view .room-card {
+    width: 300px;
   }
 }
 .room-detail {
