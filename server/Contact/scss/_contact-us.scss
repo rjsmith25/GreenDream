@@ -82,3 +82,19 @@
 .contact-form .form-group .content:last-child {
   margin-right: 0;
 }
+
+@media screen and (max-width: 500px) {
+  .contact-form {
+    max-width: 350px;
+  }
+
+  .contact-form .form-group.inputs {
+    flex-wrap: wrap;
+  }
+
+  .contact-form .form-group .content {
+    flex-basis: 100%;
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+}
