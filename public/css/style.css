@@ -1239,17 +1239,7 @@ header nav {
 
 @media screen and (max-width: 861px) {
   .hotel-search .home-search {
-    width: 175px;
-  }
-}
-@media screen and (max-width: 639px) {
-  .hotel-search .guest-field-group {
-    margin-right: 9px;
-  }
-
-  .hotel-search .home-search {
-    width: 160px;
-    margin-right: 7px;
+    width: 170px;
   }
 }
 @media screen and (max-width: 602px) {
@@ -1278,6 +1268,14 @@ header nav {
   }
 }
 @media screen and (max-width: 500px) {
+  .hotel-search .home-search {
+    align-self: flex-start;
+  }
+
+  .hotel-search {
+    flex-direction: column;
+  }
+
   .header-headline {
     font-size: 42px;
     color: #fff;
