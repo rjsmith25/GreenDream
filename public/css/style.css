@@ -1286,11 +1286,11 @@ header nav {
 }
 @media screen and (max-width: 414px) {
   .header-headline {
-    font-size: 36px;
+    font-size: 37px;
   }
 
   .guest-field-group .fa-caret-down {
-    top: 36px;
+    display: none;
   }
 }
 .the-best h2 {
