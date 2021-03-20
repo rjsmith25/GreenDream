@@ -2310,18 +2310,11 @@ header nav {
     text-align: left;
   }
 }
-@media screen and (max-width: 503px) {
-  .rooms-h .input-group {
-    width: 50%;
-  }
-
-  .rooms-h .guest-field-group {
-    margin-right: auto;
-  }
-
+@media screen and (max-width: 500px) {
   .rooms-h .rooms-search-button {
+    align-self: unset;
+    margin-right: 10px;
     width: 170px;
-    margin-right: 7px;
   }
 }
 .room-detail {
