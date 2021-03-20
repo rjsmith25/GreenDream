@@ -5,9 +5,10 @@ import GeneralHeaderComponent from "../../client/component/general-header";
 import { rooms } from "../../service";
 
 async function RoomDetail(req, res, next) {
+  let url = req.protocol + "://" + req.get("host");
   const { id } = req.params;
   const { start_date, end_date, adults, children } = req.query;
-  const room = await rooms.getRoom(id);
+  const room = await rooms.getRoom(id, url);
   const title = room.roomtype;
   let roomData = {
     room: room,

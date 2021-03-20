@@ -1,8 +1,8 @@
 const axios = require("axios");
 
-async function getAllRooms() {
+async function getAllRooms(url) {
   try {
-    let res = await axios.get("http://localhost:3000/api/rooms");
+    let res = await axios.get(`${url}/api/rooms`);
     let rooms = res.data;
     if (!rooms || rooms.length === 0) {
       return Promise.reject("No rooms available");
@@ -13,9 +13,9 @@ async function getAllRooms() {
   }
 }
 
-async function getRoom(id) {
+async function getRoom(id, url) {
   try {
-    let res = await axios.get(`http://localhost:3000/api/rooms/${id}`);
+    let res = await axios.get(`${url}/api/rooms/${id}`);
     let room = res.data;
 
     if (!room) {
