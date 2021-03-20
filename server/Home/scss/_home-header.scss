@@ -188,7 +188,6 @@ header nav {
 
 @media screen and (max-width: 375px) {
   .header-headline {
-    font-size: 20px;
-    color: #fff;
+    display: none;
   }
 }
