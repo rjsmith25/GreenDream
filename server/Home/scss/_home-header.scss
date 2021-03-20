@@ -181,10 +181,12 @@ header nav {
 
 @media screen and (max-width: 500px) {
   .hotel-search .home-search {
-    align-self: flex-start;
+    align-self: unset;
   }
 
   .hotel-search {
+    width: 300px;
+    align-items: center;
     flex-direction: column;
   }
 
