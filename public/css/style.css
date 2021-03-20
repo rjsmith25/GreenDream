@@ -1288,6 +1288,10 @@ header nav {
   .header-headline {
     font-size: 36px;
   }
+
+  .guest-field-group .fa-caret-down {
+    top: 36px;
+  }
 }
 .the-best h2 {
   font-size: 32px;
