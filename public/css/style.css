@@ -2844,5 +2844,19 @@ li.detail-tab-active {
     margin: 0 auto;
   }
 }
+@media screen and (max-width: 895px) {
+  .room-detail-booking {
+    height: 600px;
+    overflow-y: scroll;
+  }
+
+  .room-detail-modal .room-detail-booking .steps hr {
+    flex-basis: 15%;
+  }
+
+  .booking-detail {
+    display: none;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
