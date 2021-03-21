@@ -2,23 +2,22 @@
 section.our-rooms
   h2.text-center Our Rooms
   .container.grid
-    .deluxe-room
-        .content
-          h3 Deluxe Room       
-          p $500 / per night   
-    .single-room
+    a(href=`${url}/rooms?room_type=king-room`).king-room
       .content
-        h3 Single Room       
+        h3 King Room       
+        p $500 / per night   
+    a(href=`${url}/rooms?room_type=standard-room`).standard-room
+      .content
+        h3 Standard Room       
         p $100 / per night   
-    .double-room
+    a(href=`${url}/rooms?room_type=double-room`).double-room
       .content
         h3 Double Room        
         p $100 / per night   
-    .family-room
+    a(href=`${url}/rooms?room_type=queen-room`).queen-room
       .content
-        h3 Family Room      
+        h3 Queen Room      
         p $100 / per night  
-    .see-more
+    a(href=`${url}/rooms`).see-more
       .content
-        h3 See more      
-        p 28 Total
+        h3 See More

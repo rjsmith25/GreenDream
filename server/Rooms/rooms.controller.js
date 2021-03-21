@@ -7,7 +7,8 @@ import { rooms } from "../../service";
 async function Rooms(req, res, next) {
   let url = req.protocol + "://" + req.get("host");
   let title = "Rooms";
-  let { start_date, end_date, adults, children } = req.query;
+  let { start_date, end_date, adults, children, room_type } = req.query;
+  room_type = room_type || null;
   try {
     let roomData = await rooms.getAllRooms(url);
     let roomsData = {
@@ -18,6 +19,7 @@ async function Rooms(req, res, next) {
       adults: adults,
       children: children,
       title: title,
+      room_type: room_type,
     };
     const GeneralHeaderContent = renderToString(
       <GeneralHeaderComponent title={title} />
@@ -30,6 +32,7 @@ async function Rooms(req, res, next) {
         endDate={end_date}
         adults={adults}
         children={children}
+        room_type={room_type}
       />
     );
     res.render("Rooms/rooms.pug", {

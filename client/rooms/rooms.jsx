@@ -19,11 +19,49 @@ function Rooms(props) {
   );
   const [searchCount, setSearchCount] = useState(data.length || 0);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [filter, setfilter] = useState({
-    "standard-room": false,
-    "double-room": false,
-    "queen-room": false,
-    "king-room": false,
+  const [filter, setfilter] = useState(() => {
+    if (props.room_type === "standard-room") {
+      return {
+        "standard-room": true,
+        "double-room": false,
+        "queen-room": false,
+        "king-room": false,
+      };
+    }
+
+    if (props.room_type === "queen-room") {
+      return {
+        "standard-room": false,
+        "double-room": false,
+        "queen-room": true,
+        "king-room": false,
+      };
+    }
+
+    if (props.room_type === "king-room") {
+      return {
+        "standard-room": false,
+        "double-room": false,
+        "queen-room": false,
+        "king-room": true,
+      };
+    }
+
+    if (props.room_type === "double-room") {
+      return {
+        "standard-room": false,
+        "double-room": true,
+        "queen-room": false,
+        "king-room": false,
+      };
+    }
+
+    return {
+      "standard-room": false,
+      "double-room": false,
+      "queen-room": false,
+      "king-room": false,
+    };
   });
   const [startDate, setStartDate] = useState(() => {
     return props.startDate
@@ -87,6 +125,10 @@ function Rooms(props) {
 
   // for intial render
   useEffect(() => {
+    // trigger filter change
+    if (props.room_type) {
+      setfilter({ ...filter });
+    }
     //reference scrollIntoView
     contentRef.current = document.querySelector(".hotel-search");
   }, []);
@@ -105,11 +147,11 @@ function Rooms(props) {
     }
 
     if (selected === "rlow") {
-      setRooms([...rooms.sort(sortReviewLow)]);
+      setRooms([...rooms.sort(sortRatingLow)]);
     }
 
     if (selected === "rhigh") {
-      setRooms([...rooms.sort(sortReviewHigh)]);
+      setRooms([...rooms.sort(sortRatingHigh)]);
     }
   }, [selected]);
 
@@ -121,12 +163,12 @@ function Rooms(props) {
     return +b.price - +a.price;
   }
 
-  function sortReviewLow(a, b) {
-    return a.reviewCount - b.reviewCount;
+  function sortRatingLow(a, b) {
+    return a.rating - b.rating;
   }
 
-  function sortReviewHigh(a, b) {
-    return b.reviewCount - a.reviewCount;
+  function sortRatingHigh(a, b) {
+    return b.rating - a.rating;
   }
 
   function handlePageClick(data) {

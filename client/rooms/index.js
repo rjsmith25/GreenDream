@@ -22,6 +22,7 @@ hydrate(
     endDate={data.endDate}
     adults={data.adults}
     children={data.children}
+    room_type={data.room_type}
   />,
   document.querySelector(".rooms")
 );

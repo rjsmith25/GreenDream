@@ -2568,6 +2568,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../component */ "./client/component/index.js");
+/* harmony import */ var _rooms_rating__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./rooms-rating */ "./client/rooms/rooms-rating.jsx");
+
 
 
 let BASE_URL;
@@ -2617,19 +2619,11 @@ function RoomsGridView({
       className: "info"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, room.roomtype), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "ratings-reviews"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-      className: "fas fa-star"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-      className: "fas fa-star"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-      className: "fas fa-star"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-      className: "fas fa-star"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-      className: "fas fa-star-half-alt"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_rating__WEBPACK_IMPORTED_MODULE_2__.default, {
+      count: room.rating
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "review-count"
-    }, room.reviewCount, " Reviews"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, room.rating))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "pricing"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "$", room.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "night"))));
   }));
@@ -2677,6 +2671,59 @@ function RoomsPaginate({
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RoomsPaginate);
+
+/***/ }),
+
+/***/ "./client/rooms/rooms-rating.jsx":
+/*!***************************************!*\
+  !*** ./client/rooms/rooms-rating.jsx ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var nanoid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! nanoid */ "./node_modules/nanoid/index.dev.js");
+
+
+
+function RoomRating({
+  count
+}) {
+  let contents = [];
+  let len = Math.floor(count);
+
+  for (let i = 0; i < len; i++) {
+    if (i === len - 1) {
+      contents.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        key: (0,nanoid__WEBPACK_IMPORTED_MODULE_1__.nanoid)(),
+        className: "fas fa-star-half-alt fa-star-green"
+      }));
+    } else {
+      contents.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        key: (0,nanoid__WEBPACK_IMPORTED_MODULE_1__.nanoid)(),
+        className: "fas fa-star fa-star-green"
+      }));
+    }
+  }
+
+  for (let i = len; i < 5; i++) {
+    contents.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+      key: (0,nanoid__WEBPACK_IMPORTED_MODULE_1__.nanoid)(),
+      style: {
+        color: "#1caf4d"
+      },
+      className: "far fa-star"
+    }));
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, contents);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RoomRating);
 
 /***/ }),
 
@@ -2973,6 +3020,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../component */ "./client/component/index.js");
+/* harmony import */ var _rooms_rating__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./rooms-rating */ "./client/rooms/rooms-rating.jsx");
+
 
 
 let BASE_URL;
@@ -3020,19 +3069,11 @@ function RoomsStackView({
       className: "room-info"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, room.roomtype), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "ratings"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-      className: "fas fa-star fa-star-green"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-      className: "fas fa-star fa-star-green"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-      className: "fas fa-star fa-star-green"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-      className: "fas fa-star fa-star-green"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-      className: "fas fa-star-half-alt fa-star-green"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rooms_rating__WEBPACK_IMPORTED_MODULE_2__.default, {
+      count: room.rating
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "review-count"
-    }, room.reviewCount, " Reviews")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, room.rating)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "bed"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Bed"), ": ", room.beds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Max"), ": 4 People"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "room-pricing"
@@ -3091,11 +3132,49 @@ function Rooms(props) {
   const [pageCount, setPageCount] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(Math.ceil(data.length / perPage) || 0);
   const [searchCount, setSearchCount] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.length || 0);
   const [showDropdown, setShowDropdown] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const [filter, setfilter] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    "standard-room": false,
-    "double-room": false,
-    "queen-room": false,
-    "king-room": false
+  const [filter, setfilter] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => {
+    if (props.room_type === "standard-room") {
+      return {
+        "standard-room": true,
+        "double-room": false,
+        "queen-room": false,
+        "king-room": false
+      };
+    }
+
+    if (props.room_type === "queen-room") {
+      return {
+        "standard-room": false,
+        "double-room": false,
+        "queen-room": true,
+        "king-room": false
+      };
+    }
+
+    if (props.room_type === "king-room") {
+      return {
+        "standard-room": false,
+        "double-room": false,
+        "queen-room": false,
+        "king-room": true
+      };
+    }
+
+    if (props.room_type === "double-room") {
+      return {
+        "standard-room": false,
+        "double-room": true,
+        "queen-room": false,
+        "king-room": false
+      };
+    }
+
+    return {
+      "standard-room": false,
+      "double-room": false,
+      "queen-room": false,
+      "king-room": false
+    };
   });
   const [startDate, setStartDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => {
     return props.startDate ? new Date(props.startDate.replace(/-/g, "/")) : new Date();
@@ -3154,7 +3233,13 @@ function Rooms(props) {
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    //reference scrollIntoView
+    // trigger filter change
+    if (props.room_type) {
+      setfilter({ ...filter
+      });
+    } //reference scrollIntoView
+
+
     contentRef.current = document.querySelector(".hotel-search");
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -3170,11 +3255,11 @@ function Rooms(props) {
     }
 
     if (selected === "rlow") {
-      setRooms([...rooms.sort(sortReviewLow)]);
+      setRooms([...rooms.sort(sortRatingLow)]);
     }
 
     if (selected === "rhigh") {
-      setRooms([...rooms.sort(sortReviewHigh)]);
+      setRooms([...rooms.sort(sortRatingHigh)]);
     }
   }, [selected]);
 
@@ -3186,12 +3271,12 @@ function Rooms(props) {
     return +b.price - +a.price;
   }
 
-  function sortReviewLow(a, b) {
-    return a.reviewCount - b.reviewCount;
+  function sortRatingLow(a, b) {
+    return a.rating - b.rating;
   }
 
-  function sortReviewHigh(a, b) {
-    return b.reviewCount - a.reviewCount;
+  function sortRatingHigh(a, b) {
+    return b.rating - a.rating;
   }
 
   function handlePageClick(data) {
@@ -13342,6 +13427,151 @@ module.exports = hasToStringTag
 
 		return $toString(value) === regexClass;
 	};
+
+
+/***/ }),
+
+/***/ "./node_modules/nanoid/index.dev.js":
+/*!******************************************!*\
+  !*** ./node_modules/nanoid/index.dev.js ***!
+  \******************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "nanoid": () => (/* binding */ nanoid),
+/* harmony export */   "customAlphabet": () => (/* binding */ customAlphabet),
+/* harmony export */   "customRandom": () => (/* binding */ customRandom),
+/* harmony export */   "urlAlphabet": () => (/* reexport safe */ _url_alphabet_index_js__WEBPACK_IMPORTED_MODULE_0__.urlAlphabet),
+/* harmony export */   "random": () => (/* binding */ random)
+/* harmony export */ });
+/* harmony import */ var _url_alphabet_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./url-alphabet/index.js */ "./node_modules/nanoid/url-alphabet/index.js");
+// This file replaces `index.js` in bundlers like webpack or Rollup,
+// according to `browser` config in `package.json`.
+
+
+
+if (true) {
+  // All bundlers will remove this block in the production bundle.
+  if (
+    typeof navigator !== 'undefined' &&
+    navigator.product === 'ReactNative' &&
+    typeof crypto === 'undefined'
+  ) {
+    throw new Error(
+      'React Native does not have a built-in secure random generator. ' +
+        'If you don’t need unpredictable IDs use `nanoid/non-secure`. ' +
+        'For secure IDs, import `react-native-get-random-values` ' +
+        'before Nano ID.'
+    )
+  }
+  if (typeof msCrypto !== 'undefined' && typeof crypto === 'undefined') {
+    throw new Error(
+      'Import file with `if (!window.crypto) window.crypto = window.msCrypto`' +
+        ' before importing Nano ID to fix IE 11 support'
+    )
+  }
+  if (typeof crypto === 'undefined') {
+    throw new Error(
+      'Your browser does not have secure random generator. ' +
+        'If you don’t need unpredictable IDs, you can use nanoid/non-secure.'
+    )
+  }
+}
+
+let random = bytes => crypto.getRandomValues(new Uint8Array(bytes))
+
+let customRandom = (alphabet, size, getRandom) => {
+  // First, a bitmask is necessary to generate the ID. The bitmask makes bytes
+  // values closer to the alphabet size. The bitmask calculates the closest
+  // `2^31 - 1` number, which exceeds the alphabet size.
+  // For example, the bitmask for the alphabet size 30 is 31 (00011111).
+  // `Math.clz32` is not used, because it is not available in browsers.
+  let mask = (2 << (Math.log(alphabet.length - 1) / Math.LN2)) - 1
+  // Though, the bitmask solution is not perfect since the bytes exceeding
+  // the alphabet size are refused. Therefore, to reliably generate the ID,
+  // the random bytes redundancy has to be satisfied.
+
+  // Note: every hardware random generator call is performance expensive,
+  // because the system call for entropy collection takes a lot of time.
+  // So, to avoid additional system calls, extra bytes are requested in advance.
+
+  // Next, a step determines how many random bytes to generate.
+  // The number of random bytes gets decided upon the ID size, mask,
+  // alphabet size, and magic number 1.6 (using 1.6 peaks at performance
+  // according to benchmarks).
+
+  // `-~f => Math.ceil(f)` if f is a float
+  // `-~i => i + 1` if i is an integer
+  let step = -~((1.6 * mask * size) / alphabet.length)
+
+  return () => {
+    let id = ''
+    while (true) {
+      let bytes = getRandom(step)
+      // A compact alternative for `for (var i = 0; i < step; i++)`.
+      let j = step
+      while (j--) {
+        // Adding `|| ''` refuses a random byte that exceeds the alphabet size.
+        id += alphabet[bytes[j] & mask] || ''
+        if (id.length === size) return id
+      }
+    }
+  }
+}
+
+let customAlphabet = (alphabet, size) => customRandom(alphabet, size, random)
+
+let nanoid = (size = 21) => {
+  let id = ''
+  let bytes = crypto.getRandomValues(new Uint8Array(size))
+
+  // A compact alternative for `for (var i = 0; i < step; i++)`.
+  while (size--) {
+    // It is incorrect to use bytes exceeding the alphabet size.
+    // The following mask reduces the random byte in the 0-255 value
+    // range to the 0-63 value range. Therefore, adding hacks, such
+    // as empty string fallback or magic numbers, is unneccessary because
+    // the bitmask trims bytes down to the alphabet size.
+    let byte = bytes[size] & 63
+    if (byte < 36) {
+      // `0-9a-z`
+      id += byte.toString(36)
+    } else if (byte < 62) {
+      // `A-Z`
+      id += (byte - 26).toString(36).toUpperCase()
+    } else if (byte < 63) {
+      id += '_'
+    } else {
+      id += '-'
+    }
+  }
+  return id
+}
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/nanoid/url-alphabet/index.js":
+/*!***************************************************!*\
+  !*** ./node_modules/nanoid/url-alphabet/index.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "urlAlphabet": () => (/* binding */ urlAlphabet)
+/* harmony export */ });
+// This alphabet uses `A-Za-z0-9_-` symbols. The genetic algorithm helped
+// optimize the gzip compression for this alphabet.
+let urlAlphabet =
+  'ModuleSymbhasOwnPr-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW'
+
+
 
 
 /***/ }),
@@ -48476,7 +48706,8 @@ scriptTag.remove();
   startDate: data.startDate,
   endDate: data.endDate,
   adults: data.adults,
-  children: data.children
+  children: data.children,
+  room_type: data.room_type
 }), document.querySelector(".rooms"));
 })();
 

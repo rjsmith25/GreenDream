@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { formatDate } from "../component";
+import RoomRating from "./rooms-rating";
 let BASE_URL;
 
 function RoomsStackView({
@@ -47,12 +48,8 @@ function RoomsStackView({
             <div className="room-info">
               <h2>{room.roomtype}</h2>
               <div className="ratings">
-                <i className="fas fa-star fa-star-green"></i>
-                <i className="fas fa-star fa-star-green"></i>
-                <i className="fas fa-star fa-star-green"></i>
-                <i className="fas fa-star fa-star-green"></i>
-                <i className="fas fa-star-half-alt fa-star-green"></i>
-                <span className="review-count">{room.reviewCount} Reviews</span>
+                <RoomRating count={room.rating} />
+                <span className="review-count">{room.rating}</span>
               </div>
               <div className="bed">
                 <p>

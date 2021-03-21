@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { formatDate } from "../component";
+import RoomRating from "./rooms-rating";
 let BASE_URL;
 
 function RoomsGridView({ currentRooms, startDate, endDate, adults, children }) {
@@ -43,14 +44,8 @@ function RoomsGridView({ currentRooms, startDate, endDate, adults, children }) {
               <div className="info">
                 <h2>{room.roomtype}</h2>
                 <div className="ratings-reviews">
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star-half-alt"></i>
-                  <span className="review-count">
-                    {room.reviewCount} Reviews
-                  </span>
+                  <RoomRating count={room.rating} />
+                  <span className="review-count">{room.rating}</span>
                 </div>
               </div>
               <div className="pricing">
