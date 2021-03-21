@@ -4,7 +4,8 @@ import HomeSearchComponent from "../../client/home/home-search";
 import HomeHeaderComponent from "../../client/home/home-header";
 
 async function Home(req, res, next) {
-  let url = req.protocol + "://" + req.get("host");
+  let protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+  let url = protocol + "://" + req.get("host");
   try {
     const HomeSearchContent = renderToString(<HomeSearchComponent />);
     const HomeHeaderContent = renderToString(<HomeHeaderComponent />);

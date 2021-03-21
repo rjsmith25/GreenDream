@@ -5,7 +5,8 @@ import GeneralHeaderComponent from "../../client/component/general-header";
 import { rooms } from "../../service";
 
 async function RoomDetail(req, res, next) {
-  let url = req.protocol + "://" + req.get("host");
+  let protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+  let url = protocol + "://" + req.get("host");
   const { id } = req.params;
   const { start_date, end_date, adults, children } = req.query;
   const room = await rooms.getRoom(id, url);

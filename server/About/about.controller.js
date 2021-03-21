@@ -3,7 +3,8 @@ import { renderToString } from "react-dom/server";
 import GeneralHeaderComponent from "../../client/component/general-header";
 
 async function About(req, res, next) {
-  let url = req.protocol + "://" + req.get("host");
+  let protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+  let url = protocol + "://" + req.get("host");
   const title = "About Us";
   const aboutData = { title };
   const GeneralHeaderContent = renderToString(
