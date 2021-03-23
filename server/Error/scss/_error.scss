@@ -1,0 +1,30 @@
+.error {
+  height: 500px;
+}
+.error .container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error h1 {
+  font-size: 8em;
+  color: #8f939d;
+}
+
+.error p {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.error a {
+  text-align: center;
+  font-size: 16px;
+  width: 160px;
+  padding: 10px;
+  cursor: pointer;
+  border: 0;
+  background-color: #ff7733;
+  color: #fff;
+  text-decoration: none;
+}

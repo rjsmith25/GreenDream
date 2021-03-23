@@ -1,0 +1,14 @@
+//- error page
+extends ../Components/layout
+
+block content
+  <header class="general-header">!{GeneralHeaderContent}</header>
+  section.error
+    .container.flex
+      h1 404
+      p Sorry, we couldn't find the page you're looking for.
+      a(href=`${url}/rooms`) Book Room
+block scripts
+  script(id='page-ssr').
+    window.__data__ = !{JSON.stringify(errorData).replace(/<\//g, "<\\/")}
+  script(src='/js/error.bundle.js')

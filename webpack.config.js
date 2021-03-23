@@ -19,6 +19,7 @@ const clientConfig = {
     "room-detail": "./client/room-detail",
     about: "./client/about",
     contact: "./client/contact",
+    error: "./client/error",
   },
   output: {
     path: path.join(__dirname, "public/js"),

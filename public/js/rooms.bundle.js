@@ -2323,7 +2323,7 @@ __webpack_require__.r(__webpack_exports__);
 function GeneralHeader({
   title
 }) {
-  const [dropDown, setDropDown] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [dropDown, setDropDown] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [windowSize, setWindowSize] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
 
   function onNavDropDownClick() {

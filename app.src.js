@@ -4,6 +4,7 @@ import compression from "compression";
 import server from "./server";
 import api from "./api";
 import("./cron");
+import errorController from "./server/Error/error.controller";
 
 // express app
 const app = express();
@@ -40,10 +41,7 @@ app.use((req, res, next) => {
 });
 
 // handle 404 if page does not exist
-app.use((err, req, res, next) => {
-  res.status(err.status || 404);
-  res.render("Components/error.pug");
-});
+app.use(errorController);
 
 // log general uncaught promise errors
 process.on("unhandledRejection", (reason) => {

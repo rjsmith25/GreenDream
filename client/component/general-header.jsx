@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function GeneralHeader({ title }) {
-  const [dropDown, setDropDown] = useState(false);
+  const [dropDown, setDropDown] = useState(true);
   const [windowSize, setWindowSize] = useState(null);
 
   function onNavDropDownClick() {
