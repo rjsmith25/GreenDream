@@ -9,17 +9,17 @@ async function RoomDetail(req, res, next) {
   let url = protocol + "://" + req.get("host");
   const { id } = req.params;
   const { start_date, end_date, adults, children } = req.query;
-  const room = await rooms.getRoom(id, url);
-  const title = room.roomtype;
-  let roomData = {
-    room: room,
-    startDate: start_date,
-    endDate: end_date,
-    adults: adults,
-    children: children,
-    title: title,
-  };
   try {
+    const room = await rooms.getRoom(id, url);
+    const title = room.roomtype;
+    let roomData = {
+      room: room,
+      startDate: start_date,
+      endDate: end_date,
+      adults: adults,
+      children: children,
+      title: title,
+    };
     const GeneralHeaderContent = renderToString(
       <GeneralHeaderComponent title={title} />
     );

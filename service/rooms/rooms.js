@@ -9,7 +9,7 @@ async function getAllRooms(url) {
     }
     return rooms;
   } catch (e) {
-    return "Unable to get rooms";
+    throw new Error("Unable to get rooms");
   }
 }
 
@@ -24,7 +24,7 @@ async function getRoom(id, url) {
 
     return room;
   } catch (e) {
-    return "unable to get room";
+    throw new Error("unable to get room");
   }
 }
 
